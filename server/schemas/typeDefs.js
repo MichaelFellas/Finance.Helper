@@ -1,22 +1,74 @@
 const { gql } = require("apollo-server-express");
 
+const { GraphQLScalarType, Kind } = require("graphql");
+
+const dateScalar = new GraphQLScalarType({
+  name: "Date",
+  description: "Date custom scalar type",
+  serialize(value) {
+    return value.getTime(); // Convert outgoing Date to integer for JSON
+  },
+  parseValue(value) {
+    return new Date(value); // Convert incoming integer to Date
+  },
+  parseLiteral(ast) {
+    if (ast.kind === Kind.INT) {
+      return new Date(parseInt(ast.value, 10)); // Convert hard-coded AST string to integer and then to Date
+    }
+    return null; // Invalid hard-coded value (not an integer)
+  },
+});
+
+const Date = dateScalar;
+
 const typeDefs = gql`
+  scalar Date
+
   type User {
     _id: ID
-    username: String!
+    name: String!
     email: String!
     password: String!
-    bookCount: Int
-    savedBooks: [Book]
+    Goals: [Goal]
+    Bills: [Bill]
   }
 
-  type Book {
-    bookId: ID
-    authors: [String]
-    description: String!
-    title: String!
-    image: String
-    link: String
+  type Bill {
+    billId: ID
+    amount: Float!
+    name: String!
+    recurring: Boolean!
+    recurringTime: Float
+    date: Date!
+  }
+
+  input BillInput {
+    amount: Float!
+    name: String!
+    recurring: Boolean!
+    recurringTime: Float
+    date: Date!
+  }
+
+  type Goal {
+    goalId: ID
+    name: String!
+    amount: Float!
+    progress: Float!
+    dateBuy: Date!
+    Contributions: [Contribution]
+  }
+
+  input GoalInput {
+    name: String!
+    amount: Float!
+    progress: Float!
+    dateBuy: Date!
+  }
+
+  type Contribution {
+    amount: Float!
+    date: Date!
   }
 
   type Auth {
@@ -31,9 +83,12 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    saveBook(userId: ID!, bookId: String!): User
-    removeBook(userId: ID!, bookId: String!): User
+    addGoal(goalData: GoalInput!): User
+    addContribution(amount: Float!, date: Date!): Goal
+    addBill(billData: BillInput!): User
   }
 `;
 
 module.exports = typeDefs;
+
+//TODO: ADD QUERIES FOR BILLS AND GOALS

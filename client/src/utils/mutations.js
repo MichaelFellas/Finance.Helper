@@ -23,24 +23,53 @@ export const ADD_USER = gql`
   }
 `;
 
-//TODO: EDIT THIS
-export const SAVE_BOOK = gql`
-  mutation saveBook($userId: ID!, $bookId: String!) {
-    saveBook(userId: $userId, bookId: $bookId) {
+//TODO: CHECK THIS
+export const ADD_GOAL = gql`
+  mutation addGoal($goalData: GoalInput!) {
+    addGoal(goalData: $goalData) {
       _id
-      username
-      savedBooks
+      name
+      email
+      Goals {
+        goalId: ID
+        name: String!
+        amount: Float!
+        progress: Float!
+        dateBuy: Date!
+        Contributions: [Contribution]
+      }
     }
   }
 `;
 
-//TODO: EDIT THIS
-export const REMOVE_BOOK = gql`
-  mutation removeBook($userId: ID!, $bookId: String!) {
-    removeBook(userId: $userId, bookId: $bookId) {
+//TODO: CHECK THIS
+export const ADD_BILL = gql`
+  mutation addBill($billData: BillInput!) {
+    addBill(billData: $billData) {
       _id
-      username
-      savedBooks
+      name
+      email
+      Bills {
+        billId: ID
+        amount: Float!
+        name: String!
+        recurring: Boolean!
+        recurringTime: Float
+        date: Date!
+      }
+    }
+  }
+`;
+
+//TODO: CHECK THIS
+export const ADD_CONTRIBUTION = gql`
+  mutation addContribution($amount: Float!, $date: Date!, $billId: billId) {
+    addContribution(amount: $amount, date: $date, billId: $billId) {
+      billId
+      Contributions {
+        amount: Float!        
+        date: Date!
+      }
     }
   }
 `;
