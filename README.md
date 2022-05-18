@@ -18,8 +18,6 @@
 
 ## Description
 
-The purpose of this repository is to create a Mongoose based API that interacts with MongoDB in the form of a basic social network.
-
 ### Features
 
 ```

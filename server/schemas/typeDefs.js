@@ -52,7 +52,7 @@ const typeDefs = gql`
 
   type Goal {
     goalId: ID
-    name: String!
+    goalName: String!
     amount: Float!
     progress: Float!
     dateBuy: Date!
@@ -60,7 +60,7 @@ const typeDefs = gql`
   }
 
   input GoalInput {
-    name: String!
+    goalName: String!
     amount: Float!
     progress: Float!
     dateBuy: Date!
@@ -81,9 +81,9 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addGoal(goalData: GoalInput!): User
+    addGoal(goal: GoalInput!): User
     addContribution(amount: Float!, date: Date!): Goal
     addBill(billData: BillInput!): User
   }
