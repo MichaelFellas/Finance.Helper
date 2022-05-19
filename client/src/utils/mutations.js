@@ -22,53 +22,53 @@ export const ADD_USER = gql`
   }
 `;
 
-// //TODO: CHECK THIS
-// export const ADD_GOAL = gql`
-//   mutation addGoal($goal: GoalInput!) {
-//     addGoal(goal: $goal) {
-//       _id
-//       name
-//       email
-//       Goals {
-//         goalId: ID
-//         goalName: String!
-//         amount: Float!
-//         progress: Float!
-//         dateBuy: Date!
-//         Contributions: [Contribution]
-//       }
-//     }
-//   }
-// `;
+//TODO: CHECK THIS
+export const ADD_GOAL = gql`
+  mutation addGoal($goal: GoalInput!) {
+    addGoal(goal: $goal) {
+      _id
+      name
+      email
+      Goals {
+        goalId
+        goalName
+        amount
+        progress
+        dateBuy
+        Contributions
+      }
+    }
+  }
+`;
 
-// //TODO: CHECK THIS
-// export const ADD_BILL = gql`
-//   mutation addBill($billData: BillInput!) {
-//     addBill(billData: $billData) {
-//       _id
-//       name
-//       email
-//       Bills {
-//         billId: ID
-//         amount: Float!
-//         name: String!
-//         recurring: Boolean!
-//         recurringTime: Float
-//         date: Date!
-//       }
-//     }
-//   }
-// `;
+//TODO: CHECK THIS
+export const ADD_BILL = gql`
+  mutation addBill($billData: BillInput!) {
+    addBill(billData: $billData) {
+      _id
+      name
+      email
+      Bills {
+        billId
+        amount
+        name
+        recurring
+        recurringTime
+        date
+      }
+    }
+  }
+`;
 
-// //TODO: CHECK THIS
-// export const ADD_CONTRIBUTION = gql`
-//   mutation addContribution($amount: Float!, $date: Date!, $billId: billId) {
-//     addContribution(amount: $amount, date: $date, billId: $billId) {
-//       billId
-//       Contributions {
-//         amount: Float!
-//         date: Date!
-//       }
-//     }
-//   }
-// `;
+//TODO: CHECK THIS
+export const ADD_CONTRIBUTION = gql`
+  mutation addContribution($amount: Float!, $date: Date!, $billId: billId) {
+    addContribution(amount: $amount, date: $date, billId: $billId) {
+      billId
+      Contributions {
+        amount
+        date
+      }
+    }
+  }
+`;

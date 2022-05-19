@@ -7,12 +7,17 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-// import SearchBooks from "./pages/SearchBooks";
-// import SavedBooks from "./pages/SavedBooks";
-import Navbar from "./components/Navbar";
-import SignupForm from "./components/SignupForm";
-import LoginForm from "./components/LoginForm";
-import HomePage from "./components/HomePage";
+
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
+import LandingPage from "./pages/LandingPage";
+import WrongPage from "./pages/WrongPage";
+import styled from "styled-components";
+import Bills from "./pages/Bills";
+import Goals from "./pages/Goals";
+import HomePage from "./pages/HomePage";
+import Budget from "./pages/Budget";
+import Profile from "./pages/Profile";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,26 +44,32 @@ const client = new ApolloClient({
 console.log(client);
 console.log(httpLink);
 
+const Background = styled.body`
+  background-color: #ba3c3c;
+  height: 100vh;
+`;
+
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <>
-          <Navbar />
-          <Routes>
-            {/* <Route path="/" element={<SearchBooks />} />
-            <Route path="/saved" element={<SavedBooks />} /> */}
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/signup" element={<SignupForm />} />
-            <Route
-              path="*"
-              element={<h1>Welcome to Finance.Helper! Please Sign Up!</h1>}
-            />
-          </Routes>
-        </>
-      </Router>
-    </ApolloProvider>
+    <Background>
+      <ApolloProvider client={client}>
+        <Router>
+          <>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/bills" element={<Bills />} />
+              <Route path="/goals" element={<Goals />} />
+              <Route path="/budget" element={<Budget />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="*" element={<WrongPage />} />
+            </Routes>
+          </>
+        </Router>
+      </ApolloProvider>
+    </Background>
   );
 }
 
