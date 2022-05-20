@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Auth from "../utils/auth";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { Button } from "antd";
 import styled from "styled-components";
 import { Carousel, Layout } from "antd";
@@ -34,40 +34,46 @@ const LandingPage = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="containerLand">
-        <div className="containedLand">
-          <Carousel dotPosition={dotPosition}>
-            <div>
-              <h1 style={contentStyle}>Welcome</h1>
-            </div>
-            <div>
-              <h1 style={contentStyle2}>Savings Goals</h1>
-            </div>
-            <div>
-              <h1 style={contentStyle}>Budget Visualizer</h1>
-            </div>
-            <div>
-              <h1 style={contentStyle2}>Bill Tracking</h1>
-            </div>
-          </Carousel>
-          <div class="loginAlign">
-            <div className="loginBtn">
-              <NavLink to="/login">
-                <Button type="primary">Login</Button>
-              </NavLink>
-            </div>
-            <div className="loginBtn">
-              <NavLink to="/signup">
-                <Button type="primary">Sign Up</Button>
-              </NavLink>
+      {Auth.loggedIn() ? (
+        <Navigate to="/home" />
+      ) : (
+        <>
+          <Navbar />
+          <div className="containerLand">
+            <div className="containedLand">
+              <Carousel dotPosition={dotPosition}>
+                <div>
+                  <h1 style={contentStyle}>Welcome</h1>
+                </div>
+                <div>
+                  <h1 style={contentStyle2}>Savings Goals</h1>
+                </div>
+                <div>
+                  <h1 style={contentStyle}>Budget Visualizer</h1>
+                </div>
+                <div>
+                  <h1 style={contentStyle2}>Bill Tracking</h1>
+                </div>
+              </Carousel>
+              <div class="loginAlign">
+                <div className="loginBtn">
+                  <NavLink to="/login">
+                    <Button type="primary">Login</Button>
+                  </NavLink>
+                </div>
+                <div className="loginBtn">
+                  <NavLink to="/signup">
+                    <Button type="primary">Sign Up</Button>
+                  </NavLink>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <Layout>
-        <Footer class="footer">Footer</Footer>
-      </Layout>
+          <Layout>
+            <Footer class="footer">Footer</Footer>
+          </Layout>
+        </>
+      )}
     </>
   );
 };

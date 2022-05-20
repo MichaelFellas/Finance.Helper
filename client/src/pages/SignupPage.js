@@ -12,134 +12,65 @@ import {
   Button,
   AutoComplete,
 } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Navbar from "../components/Navbar";
 import Auth from "../utils/auth";
 
-const { Option } = Select;
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
 const formItemLayout = {
   labelCol: {
     xs: {
-      span: 24,
+      span: 50,
     },
     sm: {
-      span: 8,
+      span: 100,
     },
   },
   wrapperCol: {
     xs: {
-      span: 24,
+      span: 50,
     },
     sm: {
-      span: 16,
+      span: 100,
     },
   },
 };
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
-      span: 24,
+      span: 50,
       offset: 0,
     },
     sm: {
-      span: 16,
-      offset: 8,
+      span: 50,
+      offset: 9,
     },
   },
 };
 
 const SignupPage = () => {
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
-
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+  const [form] = Form.useForm();
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
+  const onFinish = async (values) => {
+    console.log("Received values of form: ", values);
     try {
       const { data } = await addUser({
-        variables: { ...userFormData },
+        variables: { ...values },
       });
 
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
-      setShowAlert(true);
     }
-
-    setUserFormData({
-      name: "",
-      email: "",
-      password: "",
-    });
-  };
-
-  const [form] = Form.useForm();
-
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
   };
 
   return (
     <>
       <Navbar className="navbar" />
+
       <div className="containerSign">
         <div className="containedSign">
           <h1 class="whiteText">Please Sign Up!</h1>
@@ -183,37 +114,8 @@ const SignupPage = () => {
             </Form.Item>
 
             <Form.Item
-              name="confirm"
-              label="Confirm Password"
-              dependencies={["password"]}
-              hasFeedback
-              rules={[
-                {
-                  required: true,
-                  message: "Please confirm your password!",
-                },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-
-                    return Promise.reject(
-                      new Error(
-                        "The two passwords that you entered do not match!"
-                      )
-                    );
-                  },
-                }),
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item
               name="name"
               label="Name"
-              setFieldsValue={userFormData.name}
               tooltip="What is you name?"
               rules={[
                 {
@@ -233,7 +135,6 @@ const SignupPage = () => {
           </Form>
         </div>
       </div>
-      );
     </>
   );
 };

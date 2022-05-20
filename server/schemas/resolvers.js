@@ -16,6 +16,7 @@ const resolvers = {
     //WORKS FINE WITH AUTH
     addUser: async (parent, { name, email, password }) => {
       const user = await User.create({ name, email, password });
+      console.log(user);
       const token = signToken(user);
 
       return { token, user };
