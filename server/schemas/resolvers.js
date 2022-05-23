@@ -54,7 +54,7 @@ const resolvers = {
         }
       );
       const token = signToken(user);
-      return { token, goal, user };
+      return { token, user };
     },
 
     //TODO: ASK LUCA ABOUT THIS

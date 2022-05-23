@@ -72,18 +72,24 @@ const LoginPage = () => {
 
       <div className="containerSign">
         <div className="containedSign">
-          <h1 class="whiteText">Please Sign Up!</h1>
+          <h1 class="whiteText">Please Login!</h1>
           <Form
+            size="large"
             className="widening"
             {...formItemLayout}
             form={form}
             name="register"
             onFinish={onFinish}
             scrollToFirstError
+            class="whiteText"
           >
             <Form.Item
               name="email"
-              label="E-mail"
+              label={
+                <label style={{ color: "white", fontSize: "25px" }}>
+                  Email
+                </label>
+              }
               rules={[
                 {
                   type: "email",
@@ -100,7 +106,11 @@ const LoginPage = () => {
 
             <Form.Item
               name="password"
-              label="Password"
+              label={
+                <label style={{ color: "white", fontSize: "25px" }}>
+                  Password
+                </label>
+              }
               rules={[
                 {
                   required: true,
@@ -118,6 +128,16 @@ const LoginPage = () => {
               </Button>
             </Form.Item>
           </Form>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          {error ? (
+            <p class="whiteText">Failed to Login! Something went Wrong!</p>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

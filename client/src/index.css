@@ -22,6 +22,13 @@ h6 {
   font-style: italic;
 }
 
+.icons {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 35px;
+  color: whitesmoke;
+}
+
 /*SIDEBAR STUFF*/
 
 .sider {  
@@ -211,6 +218,10 @@ h6 {
   width:100%;
 }
 
+.logOut{
+bottom: 10px;
+}
+
 /*CONTENT STUFF */
 
 .content {
@@ -221,6 +232,98 @@ h6 {
   background-color: #ba3c3c;
   padding: 0%;
   width: 88.72vw;  
+}
+
+/*GOALS STUFF*/
+
+.containerGoals {
+  border: black solid 3px;
+background-color: whitesmoke;
+  width: 85%;
+  height: 85%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.containerNewGoals {
+  border: black solid 3px;
+background-color:#7b7b7b;
+  width: 85%;
+  height: 85%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+
+}
+
+.newGoalsForm {
+
+  padding-top: 10%;
+}
+
+
+.innerGoals {
+ 
+  flex-basis: 47%;  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Goals {
+  height: 30%;
+  width: 85%;
+  border: solid blue 1px;
+  margin: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #7b7b7b;
+  flex-basis: 47%; 
+}
+
+.Goals h1 {
+  padding-top: 1%;
+  background-color: #FE9A9A;
+  color: whitesmoke;
+}
+
+.Goals h2 {
+  padding-top: 1%;
+  color: whitesmoke;
+}
+
+.addGoal {
+  height: 30%;
+  width: 85%;
+  border: solid blue 1px;
+  margin: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #7b7b7b;
+  flex-basis: 47%; 
+}
+
+.addGoal h1 {
+  padding-top: 1%;
+  background-color: #FE9A9A;
+  color: whitesmoke;
+  font-size: 30px;
+}
+
+.addGoal h2 {
+  padding-top: 1%;
+  
+  color: whitesmoke;
 }
 
 /*MEDIA QUERIES*/

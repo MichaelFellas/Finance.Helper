@@ -21,11 +21,19 @@ const Bills = () => {
             </Sider>
             <div>
               <Content class="content">
-                <h1>Bills</h1>
+                <div className="containerGoals"></div>
               </Content>
             </div>
           </Layout>
-          <Footer class="footer">Footer</Footer>
+          <Footer class="footer">
+            {Auth.loggedIn() ? (
+              <Button className="logOut" onClick={Auth.logout}>
+                Logout
+              </Button>
+            ) : (
+              <> </>
+            )}
+          </Footer>
         </Layout>
       ) : (
         <Navigate to="/" />

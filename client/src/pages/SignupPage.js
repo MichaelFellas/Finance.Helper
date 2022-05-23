@@ -24,7 +24,7 @@ const formItemLayout = {
       span: 50,
     },
     sm: {
-      span: 100,
+      span: 150,
     },
   },
   wrapperCol: {
@@ -75,6 +75,7 @@ const SignupPage = () => {
         <div className="containedSign">
           <h1 class="whiteText">Please Sign Up!</h1>
           <Form
+            size="large"
             className="widening"
             {...formItemLayout}
             form={form}
@@ -84,7 +85,11 @@ const SignupPage = () => {
           >
             <Form.Item
               name="email"
-              label="E-mail"
+              label={
+                <label style={{ color: "white", fontSize: "25px" }}>
+                  Email
+                </label>
+              }
               rules={[
                 {
                   type: "email",
@@ -96,12 +101,16 @@ const SignupPage = () => {
                 },
               ]}
             >
-              <Input />
+              <Input size="large" />
             </Form.Item>
 
             <Form.Item
               name="password"
-              label="Password"
+              label={
+                <label style={{ color: "white", fontSize: "25px" }}>
+                  Password
+                </label>
+              }
               rules={[
                 {
                   required: true,
@@ -110,13 +119,14 @@ const SignupPage = () => {
               ]}
               hasFeedback
             >
-              <Input.Password />
+              <Input.Password size="large" />
             </Form.Item>
 
             <Form.Item
               name="name"
-              label="Name"
-              tooltip="What is you name?"
+              label={
+                <label style={{ color: "white", fontSize: "25px" }}>Name</label>
+              }
               rules={[
                 {
                   required: true,
@@ -125,7 +135,7 @@ const SignupPage = () => {
                 },
               ]}
             >
-              <Input />
+              <Input size="large" />
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
               <Button type="primary" htmlType="submit">
@@ -133,6 +143,16 @@ const SignupPage = () => {
               </Button>
             </Form.Item>
           </Form>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          {error ? (
+            <p class="whiteText">Failed to Sign Up! Something went Wrong!</p>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

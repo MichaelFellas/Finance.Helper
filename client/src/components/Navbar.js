@@ -20,16 +20,7 @@ const AppNavbar = () => {
   return (
     <>
       <Title>
-        Finance.Helper{" "}
-        <div>
-          {Auth.loggedIn() ? (
-            <Button className="logOut" onClick={Auth.logout}>
-              Logout
-            </Button>
-          ) : (
-            <> </>
-          )}
-        </div>
+        Finance.Helper <div></div>
       </Title>
     </>
   );
