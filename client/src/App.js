@@ -14,6 +14,7 @@ import LandingPage from "./pages/LandingPage";
 import WrongPage from "./pages/WrongPage";
 import styled from "styled-components";
 import Bills from "./pages/Bills";
+import NewBill from "./pages/NewBill";
 import Goals from "./pages/Goals";
 import NewGoal from "./pages/NewGoal";
 import HomePage from "./pages/HomePage";
@@ -61,6 +62,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/bills" element={<Bills />} />
+              <Route path="/newBill" element={<NewBill />} />
               <Route path="/goals" element={<Goals />} />
               <Route path="/newGoal" element={<NewGoal />} />
               <Route path="/budget" element={<Budget />} />

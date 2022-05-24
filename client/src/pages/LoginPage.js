@@ -1,21 +1,10 @@
 // see SignupForm.js for comments
-import React, { useState } from "react";
+import React from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import Navbar from "../components/Navbar";
-import {
-  Form,
-  Input,
-  InputNumber,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-} from "antd";
+import { Form, Input, Button } from "antd";
 
 const formItemLayout = {
   labelCol: {
@@ -49,7 +38,7 @@ const tailFormItemLayout = {
 };
 
 const LoginPage = () => {
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [login, { error }] = useMutation(LOGIN_USER);
 
   const [form] = Form.useForm();
 

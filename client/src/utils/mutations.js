@@ -26,18 +26,26 @@ export const ADD_USER = gql`
 
 //TODO: CHECK THIS
 export const ADD_GOAL = gql`
-  mutation addGoal($goal: GoalInput!) {
-    addGoal(goal: $goal) {
+  mutation addGoal(
+    $goalName: String!
+    $amount: Float!
+    $progress: Float!
+    $dateBuy: Date!
+  ) {
+    addGoal(
+      goalName: $goalName
+      amount: $amount
+      progress: $progress
+      dateBuy: $dateBuy
+    ) {
       _id
       name
       email
       Goals {
-        goalId
+        _id
         goalName
         amount
         progress
-        dateBuy
-        Contributions
       }
     }
   }
@@ -51,7 +59,7 @@ export const ADD_BILL = gql`
       name
       email
       Bills {
-        billId
+        _id
         amount
         name
         recurring

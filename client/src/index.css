@@ -29,6 +29,12 @@ h6 {
   color: whitesmoke;
 }
 
+.icons2 {  
+  font-size: 35px;
+  color: whitesmoke;
+  margin-top: -5%;
+}
+
 /*SIDEBAR STUFF*/
 
 .sider {  
@@ -80,6 +86,20 @@ h6 {
 
 .whiteText {
   color: whitesmoke;  
+}
+
+.whiteTextProg {
+  color: whitesmoke;
+  font-size: 20px;
+  
+  
+  
+
+}
+
+.displayProg {
+  display: flex;
+  flex-direction: row;
 }
 
 .sideBarBtn {
@@ -233,41 +253,105 @@ bottom: 10px;
   padding: 0%;
   width: 88.72vw;  
 }
+/*BILL STUFF */
+.containerBills {
+  border: black solid 3px;
+   background-color: #4B8CC1;
+  width: 85%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.containerBills h1{
+font-size: 50px;
+  color: whitesmoke;
+  background-color: #9AD1FE; 
+  -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #7b7b7b ;
+    width: 100%;
+}
+
+.containerBills h2{
+  font-size: 30px;
+    color: whitesmoke;   
+}
+
+.containerBills h4{
+    font-size: 20px;
+      color: whitesmoke;     
+}
+
+.addBill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -1%;
+  width: 30%;
+  vertical-align: middle;
+  padding-top: 1%;
+  border: whitesmoke 3px solid;
+  background-color: #323232;
+}
 
 /*GOALS STUFF*/
 
 .containerGoals {
   border: black solid 3px;
-background-color: whitesmoke;
+  background-color: #323232;
   width: 85%;
   height: 85%;
   display: flex;
   flex-direction: row;
-
 }
 
 .containerNewGoals {
   border: black solid 3px;
-background-color:#7b7b7b;
+  background-color:#7b7b7b;
   width: 85%;
   height: 85%;
   display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
+  flex-direction: column;
+  padding-top: 3%;
+  justify-content: top;
 
+}
+
+.editGoal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  vertical-align: middle;
+  margin-top: -4%;
+}
+
+.editGoal h3 {
+  color:whitesmoke;
+  margin-top: -2%;
+  margin-right: 2%;
+}
+
+.containerNewGoals h1{
+  text-align: center;
+  font-size: 50px;
+  color: rgb(0, 0, 255);
+  background-color: #9AD1FE; 
+  -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000000 ;
 }
 
 .newGoalsForm {
-
-  padding-top: 10%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;  
 }
 
 
-.innerGoals {
- 
+.innerGoals { 
   flex-basis: 47%;  
-  display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: auto;
@@ -277,7 +361,7 @@ background-color:#7b7b7b;
 .Goals {
   height: 30%;
   width: 85%;
-  border: solid blue 1px;
+  border: solid whitesmoke 1px;
   margin: 2%;
   margin-left: auto;
   margin-right: auto;
@@ -292,6 +376,9 @@ background-color:#7b7b7b;
   padding-top: 1%;
   background-color: #FE9A9A;
   color: whitesmoke;
+  font-size: 25px;
+  margin-bottom: -0.5%;
+
 }
 
 .Goals h2 {
@@ -299,10 +386,20 @@ background-color:#7b7b7b;
   color: whitesmoke;
 }
 
+.Goals p {
+  font-size: 20px;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.progBar {
+  margin-top: -8%;
+}
+
 .addGoal {
   height: 30%;
   width: 85%;
-  border: solid blue 1px;
+  border: solid whitesmoke 1px;
   margin: 2%;
   margin-left: auto;
   margin-right: auto;

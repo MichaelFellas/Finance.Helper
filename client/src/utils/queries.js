@@ -5,8 +5,16 @@ export const QUERY_ME = gql`
     me {
       _id
       name
-      Goals
-      Bills
+      Goals {
+        goalName
+        amount
+        progress
+        dateBuy
+      }
+      Bills {
+        name
+        amount
+      }
     }
   }
 `;

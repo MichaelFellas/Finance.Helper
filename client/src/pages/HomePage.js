@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Auth from "../utils/auth";
 import { NavLink, Navigate } from "react-router-dom";
 import { Button, Layout } from "antd";
-import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
 

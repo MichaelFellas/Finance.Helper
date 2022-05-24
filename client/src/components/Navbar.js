@@ -1,9 +1,6 @@
-import { Button } from "antd";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from "react";
 
-import Auth from "../utils/auth";
+import styled from "styled-components";
 
 const Title = styled.h1`
   font-size: 50px;

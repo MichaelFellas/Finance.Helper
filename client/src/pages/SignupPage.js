@@ -1,18 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
-import {
-  Form,
-  Input,
-  InputNumber,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-} from "antd";
-import { Link, Navigate } from "react-router-dom";
+import { Form, Input, Button } from "antd";
+
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Navbar from "../components/Navbar";
@@ -50,7 +39,7 @@ const tailFormItemLayout = {
 };
 
 const SignupPage = () => {
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const [form] = Form.useForm();
 

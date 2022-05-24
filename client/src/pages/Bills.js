@@ -1,9 +1,11 @@
 import { Layout } from "antd";
-import { NavLink, Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { Button } from "antd";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Auth from "../utils/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -21,7 +23,14 @@ const Bills = () => {
             </Sider>
             <div>
               <Content class="content">
-                <div className="containerGoals"></div>
+                <div className="containerBills">
+                  <h1>BILL TRACKER</h1>
+                  <div className="addBill">
+                    <NavLink className="icons" to="/newBill">
+                      <h2>ADD A BILL</h2>
+                    </NavLink>
+                  </div>
+                </div>
               </Content>
             </div>
           </Layout>

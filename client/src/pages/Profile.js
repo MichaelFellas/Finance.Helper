@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import Auth from "../utils/auth";
+import React from "react";
+
 import { NavLink } from "react-router-dom";
 import { Button, Layout } from "antd";
-import styled from "styled-components";
 
 import Navbar from "../components/Navbar";
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer } = Layout;
 
 const Profile = () => {
   return (

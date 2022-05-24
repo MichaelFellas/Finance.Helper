@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Auth from "../utils/auth";
 import { NavLink, Navigate } from "react-router-dom";
 import { Button } from "antd";
-import styled from "styled-components";
+
 import { Carousel, Layout } from "antd";
 import Navbar from "../components/Navbar";
 
@@ -25,12 +25,7 @@ const contentStyle2 = {
 };
 
 const LandingPage = () => {
-  const [dotPosition, setDotPosition] = React.useState("bottom");
-
-  const [size, setSize] = useState("large");
-  const handleSizeChange = (e) => {
-    setSize(e.target.value);
-  };
+  const [dotPosition] = useState("bottom");
 
   return (
     <>

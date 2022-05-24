@@ -1,14 +1,24 @@
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import { Form, Input, InputNumber, DatePicker, Layout, Button } from "antd";
+import { NavLink, Navigate } from "react-router-dom";
+import {
+  Form,
+  Input,
+  InputNumber,
+  DatePicker,
+  Layout,
+  Button,
+  Radio,
+  Select,
+} from "antd";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
 
 import { useMutation } from "@apollo/client";
 import { ADD_GOAL } from "../utils/mutations";
+import moment from "moment";
 
 const { Header, Footer, Sider, Content } = Layout;
-
+const { Option } = Select;
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -40,30 +50,26 @@ const tailFormItemLayout = {
   },
 };
 
-const dateFormat = "DD/MM/YYYY";
+const dateFormat = "YYYY/MM/DD";
 
-const NewGoal = () => {
-  const navigate = useNavigate();
+const NewBill = () => {
   const [addGoal, { error, data }] = useMutation(ADD_GOAL);
 
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
-    console.log("DATE", values.purchaseDate);
     try {
       const response = await addGoal({
         variables: {
           goalName: values.goalName,
           amount: values.goalAmount,
           progress: values.goalInitial,
-          dateBuy: values.purchaseDate.toDate(),
+          // dateBuy: values.purchaseDate._d,
         },
       });
       if (!response.data) {
         throw new Error("something went wrong!");
       }
-
-      navigate("/goals");
     } catch (e) {
       console.error(e);
     }
@@ -83,7 +89,7 @@ const NewGoal = () => {
             <div>
               <Content class="content">
                 <div className="containerNewGoals">
-                  <h1>NEW SAVINGS GOAL</h1>
+                  <h1>NEW BILL</h1>
                   <div className="newGoalsForm">
                     <Form
                       size="large"
@@ -94,16 +100,16 @@ const NewGoal = () => {
                       scrollToFirstError
                     >
                       <Form.Item
-                        name="goalName"
+                        name="billName"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
-                            Goal Name
+                            Bill Name
                           </label>
                         }
                         rules={[
                           {
                             required: true,
-                            message: "Please input your name!",
+                            message: "Please input the name of your Bill!",
                             whitespace: true,
                           },
                         ]}
@@ -111,10 +117,10 @@ const NewGoal = () => {
                         <Input size="large" />
                       </Form.Item>
                       <Form.Item
-                        name="goalAmount"
+                        name="billAmount"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
-                            Amount Required
+                            Bill Amount
                           </label>
                         }
                         rules={[
@@ -131,22 +137,10 @@ const NewGoal = () => {
                       </Form.Item>
 
                       <Form.Item
-                        name="goalInitial"
+                        name="billDate"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
-                            Initial Amount
-                          </label>
-                        }
-                        rules={[{ type: "number", min: 0, required: true }]}
-                      >
-                        <InputNumber size="large" />
-                      </Form.Item>
-
-                      <Form.Item
-                        name="purchaseDate"
-                        label={
-                          <label style={{ color: "white", fontSize: "25px" }}>
-                            Date you would like to Purchase
+                            Date you will be billed
                           </label>
                         }
                         rules={[
@@ -159,9 +153,67 @@ const NewGoal = () => {
                       >
                         <DatePicker format={dateFormat} size="large" />
                       </Form.Item>
+
+                      <Form.Item
+                        name="billRecurring"
+                        label={
+                          <label style={{ color: "white", fontSize: "25px" }}>
+                            Is this a Re-occurring Bill?
+                          </label>
+                        }
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the Goal Amount",
+                            whitespace: true,
+                          },
+                        ]}
+                      >
+                        <Radio.Group>
+                          <Radio
+                            style={{ color: "white", fontSize: "15px" }}
+                            value="true"
+                          >
+                            YES
+                          </Radio>
+                          <Radio
+                            style={{ color: "white", fontSize: "15px" }}
+                            value="false"
+                          >
+                            NO
+                          </Radio>
+                        </Radio.Group>
+                      </Form.Item>
+
+                      <Form.Item
+                        name="billReccuringTime"
+                        label={
+                          <label style={{ color: "white", fontSize: "25px" }}>
+                            How often is this bill charged?
+                          </label>
+                        }
+                        hasFeedback
+                        rules={[
+                          {
+                            required: true,
+                            message:
+                              "Please select how often you are charged this bill.",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Please select a time period">
+                          <Option value="weekly">Weekly</Option>
+                          <Option value="fortnightly">Fortnightly</Option>
+                          <Option value="monthly">Monthly</Option>
+                          <Option value="quarterly">Quarterly</Option>
+                          <Option value="semi-annually">Semi Annually</Option>
+                          <Option value="annually">Annually</Option>
+                        </Select>
+                      </Form.Item>
+
                       <Form.Item {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">
-                          Add Savings Goal!
+                        <Button type="primary" htmlType="submit" size="large">
+                          Add Your Bill!
                         </Button>
                       </Form.Item>
                     </Form>
@@ -199,4 +251,4 @@ const NewGoal = () => {
   );
 };
 
-export default NewGoal;
+export default NewBill;
