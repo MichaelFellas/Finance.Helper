@@ -6,6 +6,7 @@ export const QUERY_ME = gql`
       _id
       name
       Goals {
+        _id
         goalName
         amount
         progress
@@ -14,6 +15,20 @@ export const QUERY_ME = gql`
       Bills {
         name
         amount
+      }
+    }
+  }
+`;
+
+export const QUERY_SINGLE_GOAL = gql`
+  query getSingleGoal($goalId: ID!) {
+    goal(goalId: $goalId) {
+      Goals {
+        _id
+        goalName
+        amount
+        progress
+        dateBuy
       }
     }
   }

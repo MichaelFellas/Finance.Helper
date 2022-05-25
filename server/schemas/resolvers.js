@@ -34,6 +34,18 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+
+    goal: async (parent, { goalId }, context) => {
+      if (context.user) {
+        const goal = await User.findOne({
+          _id: context.user._id,
+        }).populate("Goals", {
+          match: { _id: goalId },
+        });
+        console.log(goal);
+        return goal;
+      }
+    },
   },
 
   Mutation: {
@@ -80,6 +92,20 @@ const resolvers = {
         );
 
         return goal;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
+    removeGoal: async (parent, args, context) => {
+      try {
+        const user = User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { Goals: { _id: args._id } } },
+          { new: true }
+        );
+
+        return user;
       } catch (err) {
         console.log(err);
       }

@@ -17,6 +17,7 @@ import Bills from "./pages/Bills";
 import NewBill from "./pages/NewBill";
 import Goals from "./pages/Goals";
 import NewGoal from "./pages/NewGoal";
+import EditGoal from "./pages/EditGoal";
 import HomePage from "./pages/HomePage";
 import Budget from "./pages/Budget";
 import Profile from "./pages/Profile";
@@ -65,6 +66,7 @@ function App() {
               <Route path="/newBill" element={<NewBill />} />
               <Route path="/goals" element={<Goals />} />
               <Route path="/newGoal" element={<NewGoal />} />
+              <Route path="/editGoal/:goalId" element={<EditGoal />} />
               <Route path="/budget" element={<Budget />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/home" element={<HomePage />} />

@@ -35,6 +35,11 @@ h6 {
   margin-top: -5%;
 }
 
+.icons2:hover {
+  cursor: pointer;
+  color:#4B8CC1;
+}
+
 /*SIDEBAR STUFF*/
 
 .sider {  

@@ -51,6 +51,22 @@ export const ADD_GOAL = gql`
   }
 `;
 
+export const REMOVE_GOAL = gql`
+  mutation removeGoal($_id: String!) {
+    removeGoal(_id: $_id) {
+      _id
+      name
+      email
+      Goals {
+        _id
+        goalName
+        amount
+        progress
+      }
+    }
+  }
+`;
+
 //TODO: CHECK THIS
 export const ADD_BILL = gql`
   mutation addBill($billData: BillInput!) {

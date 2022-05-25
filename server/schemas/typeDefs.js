@@ -12,6 +12,14 @@ const typeDefs = gql`
     Bills: [Bill]
   }
 
+  type Goal {
+    _id: ID!
+    goalName: String!
+    amount: Float!
+    progress: Float!
+    dateBuy: Date!
+  }
+
   type Bill {
     _id: ID!
     amount: Float!
@@ -27,14 +35,6 @@ const typeDefs = gql`
     recurringTime: String
   }
 
-  type Goal {
-    _id: ID!
-    goalName: String!
-    amount: Float!
-    progress: Float!
-    dateBuy: Date!
-  }
-
   type Contribution {
     amount: Float!
     date: Date!
@@ -47,6 +47,7 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    goal(goalId: ID!): User
   }
 
   type Mutation {
@@ -58,6 +59,7 @@ const typeDefs = gql`
       progress: Float!
       dateBuy: Date!
     ): User
+    removeGoal(_id: String!): User
     addContribution(amount: Float!, date: Date!): Goal
     addBill(billData: BillInput!): User
   }

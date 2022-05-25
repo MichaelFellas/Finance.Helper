@@ -1,4 +1,5 @@
 import { Layout } from "antd";
+import { useState } from "react";
 import { NavLink, Navigate } from "react-router-dom";
 import { Button } from "antd";
 import Navbar from "../components/Navbar";
@@ -41,7 +42,6 @@ const Goals = () => {
     goalsCol2.push(userData.Goals[4]);
   }
 
-  console.log(goalsCol2);
   return (
     <>
       {Auth.loggedIn() ? (
@@ -84,7 +84,11 @@ const Goals = () => {
                           </div>
                           <div className="editGoal">
                             <h3>Edit Goal</h3>
-                            <NavLink className="icons2" to="/newGoal">
+
+                            <NavLink
+                              className="icons2"
+                              to={`/editGoal/${goal._id}`}
+                            >
                               <FontAwesomeIcon
                                 icon={faCirclePlus}
                               ></FontAwesomeIcon>
