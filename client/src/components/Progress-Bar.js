@@ -34,7 +34,7 @@ const ProgressBar = (props) => {
   const bgcolor = background(value);
 
   const containerStyles = {
-    height: 30,
+    height: 40,
     width: "85%",
     backgroundColor: "#FFFFFF",
     margin: 50,
@@ -45,7 +45,7 @@ const ProgressBar = (props) => {
     width: `${value}%`,
     backgroundColor: bgcolor,
     borderRadius: "inherit",
-    textAlign: "right",
+    textAlign: "center",
   };
 
   const labelStyles = {

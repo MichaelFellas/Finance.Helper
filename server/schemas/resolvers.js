@@ -27,6 +27,29 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findOne({ _id: context.user._id }).populate(
+          "Goals",
+          "Bills"
+        );
+
+        return user;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    meBill: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id }).populate(
+          "Bills"
+        );
+
+        return user;
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
+    meGoal: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id }).populate(
           "Goals"
         );
 
@@ -39,8 +62,9 @@ const resolvers = {
       if (context.user) {
         const goal = await User.findOne({
           _id: context.user._id,
-        }).populate("Goals", {
-          match: { Goals: { _id: goalId } },
+        }).populate({
+          path: "Goals",
+          match: { goalName: "XBOX" },
         });
         console.log(goal);
         return goal;
@@ -76,9 +100,7 @@ const resolvers = {
       return { token, user };
     },
 
-    //TODO: ASK LUCA ABOUT THIS
     addGoal: async (parent, args, context) => {
-      console.log(args, "Hello");
       try {
         const goal = await User.findOneAndUpdate(
           { _id: context.user._id },
@@ -111,38 +133,24 @@ const resolvers = {
       }
     },
 
-    //TODO: ASK LUCA ABOUT THIS
-    addContribution: async (parent, args, context) => {
-      const contribution = await Contribution.create(args);
-      const goal = await Goal.findOneAndUpdate(
-        { _id: context.goal._id }, //HOW TO DO THIS
-        {
-          $addToSet: { Contributions: contribution },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-      const token = signToken(user);
-      return { token, goal, contribution };
-    },
-
-    //TODO: ASK LUCA ABOUT THIS
     addBill: async (parent, args, context) => {
-      const bill = await Bill.create(args);
-      const user = await User.findOneAndUpdate(
-        { _id: context.user._id },
-        {
-          $addToSet: { Bills: bill },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-      const token = signToken(user);
-      return { token, bill, user };
+      console.log(args);
+      try {
+        const bill = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: { Bills: args },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+
+        return bill;
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };

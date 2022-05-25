@@ -1,4 +1,4 @@
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import {
   Form,
   Input,
@@ -14,7 +14,7 @@ import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
 
 import { useMutation } from "@apollo/client";
-import { ADD_GOAL } from "../utils/mutations";
+import { ADD_BILL } from "../utils/mutations";
 import moment from "moment";
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -50,26 +50,30 @@ const tailFormItemLayout = {
   },
 };
 
-const dateFormat = "YYYY/MM/DD";
+const dateFormat = "DD/MM/YYYY";
 
 const NewBill = () => {
-  const [addGoal, { error, data }] = useMutation(ADD_GOAL);
+  const navigate = useNavigate();
+  const [addBill, { error, data }] = useMutation(ADD_BILL);
 
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
+    console.log(values.billDate._d);
     try {
-      const response = await addGoal({
+      const response = await addBill({
         variables: {
-          goalName: values.goalName,
-          amount: values.goalAmount,
-          progress: values.goalInitial,
-          // dateBuy: values.purchaseDate._d,
+          name: values.billName,
+          amount: values.billAmount,
+          billDate: values.billDate.toDate(),
+          recurring: values.billRecurring,
+          recurringTime: values.billReccuringTime,
         },
       });
       if (!response.data) {
         throw new Error("something went wrong!");
       }
+      navigate("/bills");
     } catch (e) {
       console.error(e);
     }

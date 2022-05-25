@@ -6,10 +6,22 @@ import Navbar from "../components/Navbar";
 import Auth from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { QUERY_ME_BILLS } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+import moment from "moment";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const Bills = () => {
+  const { loading, data } = useQuery(QUERY_ME_BILLS);
+
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
+
+  const userData = data?.meBill;
+  console.log(userData);
+
   return (
     <>
       {Auth.loggedIn() ? (
@@ -25,8 +37,41 @@ const Bills = () => {
               <Content class="content">
                 <div className="containerBills">
                   <h1>BILL TRACKER</h1>
+
+                  <div className="loadBills">
+                    <div className="leftBillsTable whiteText">
+                      <div className="borderBottomTitle">BILL DATE</div>
+                      {userData.Bills.map((bill) => {
+                        return (
+                          <p className="borderBottom">
+                            {moment(bill.billDate).format("DD/MM/YYYY")}
+                          </p>
+                        );
+                      })}
+                    </div>
+                    <div className="midBillsTable whiteText">
+                      <div className="borderBottomTitle">BILL NAME</div>
+                      <div>
+                        {userData.Bills.map((bill) => {
+                          return (
+                            <NavLink to={`/editBill/${bill._id}`}>
+                              <p className="borderBottom whiteText">
+                                {bill.name}
+                              </p>
+                            </NavLink>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    <div className="rightBillsTable whiteText">
+                      <div className="borderBottomTitle">BILL AMOUNT</div>
+                      {userData.Bills.map((bill) => {
+                        return <p className="borderBottom">${bill.amount}</p>;
+                      })}
+                    </div>
+                  </div>
                   <div className="addBill">
-                    <NavLink className="icons" to="/newBill">
+                    <NavLink className="addBillButton" to="/newBill">
                       <h2>ADD A BILL</h2>
                     </NavLink>
                   </div>

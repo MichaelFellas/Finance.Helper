@@ -10,6 +10,10 @@ const billSchema = new Schema({
     type: Number,
     required: true,
   },
+  billDate: {
+    type: Date,
+    require: true,
+  },
   recurring: {
     type: Boolean,
     required: true,

@@ -3,7 +3,16 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import { Form, Input, InputNumber, DatePicker, Layout, Button } from "antd";
+import {
+  Form,
+  Input,
+  InputNumber,
+  DatePicker,
+  Layout,
+  Button,
+  Radio,
+  Select,
+} from "antd";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
@@ -12,7 +21,7 @@ import { useMutation } from "@apollo/client";
 // import { EDIT_GOAL } from "../utils/mutations";
 
 const { Header, Footer, Sider, Content } = Layout;
-
+const { Option } = Select;
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -50,14 +59,14 @@ const EditGoal = () => {
   const navigate = useNavigate();
   //   const [editGoal, { error, data }] = useMutation(EDIT_GOAL);
   const [form] = Form.useForm();
-  const { goalId } = useParams();
+  const { billId } = useParams();
 
   const { loading, data } = useQuery(QUERY_SINGLE_GOAL, {
-    variables: { goalId: goalId },
+    variables: { billId: billId },
   });
 
-  const goal = data?.goal;
-  console.log(goal);
+  const bill = data?.bill;
+  console.log(bill);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -97,7 +106,7 @@ const EditGoal = () => {
             <div>
               <Content class="content">
                 <div className="containerNewGoals">
-                  <h1>UPDATE YOUR GOAL</h1>
+                  <h1>NEW BILL</h1>
                   <div className="newGoalsForm">
                     <Form
                       size="large"
@@ -108,16 +117,16 @@ const EditGoal = () => {
                       scrollToFirstError
                     >
                       <Form.Item
-                        name="goalName"
+                        name="billName"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
-                            Goal Name
+                            Bill Name
                           </label>
                         }
                         rules={[
                           {
                             required: true,
-                            message: "Please input your name!",
+                            message: "Please input the name of your Bill!",
                             whitespace: true,
                           },
                         ]}
@@ -125,10 +134,10 @@ const EditGoal = () => {
                         <Input size="large" />
                       </Form.Item>
                       <Form.Item
-                        name="goalAmount"
+                        name="billAmount"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
-                            Amount Required
+                            Bill Amount
                           </label>
                         }
                         rules={[
@@ -145,22 +154,10 @@ const EditGoal = () => {
                       </Form.Item>
 
                       <Form.Item
-                        name="goalInitial"
+                        name="billDate"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
-                            Initial Amount
-                          </label>
-                        }
-                        rules={[{ type: "number", min: 0, required: true }]}
-                      >
-                        <InputNumber size="large" />
-                      </Form.Item>
-
-                      <Form.Item
-                        name="purchaseDate"
-                        label={
-                          <label style={{ color: "white", fontSize: "25px" }}>
-                            Date you would like to Purchase
+                            Date you will be billed
                           </label>
                         }
                         rules={[
@@ -173,9 +170,67 @@ const EditGoal = () => {
                       >
                         <DatePicker format={dateFormat} size="large" />
                       </Form.Item>
+
+                      <Form.Item
+                        name="billRecurring"
+                        label={
+                          <label style={{ color: "white", fontSize: "25px" }}>
+                            Is this a Re-occurring Bill?
+                          </label>
+                        }
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the Goal Amount",
+                            whitespace: true,
+                          },
+                        ]}
+                      >
+                        <Radio.Group>
+                          <Radio
+                            style={{ color: "white", fontSize: "15px" }}
+                            value="true"
+                          >
+                            YES
+                          </Radio>
+                          <Radio
+                            style={{ color: "white", fontSize: "15px" }}
+                            value="false"
+                          >
+                            NO
+                          </Radio>
+                        </Radio.Group>
+                      </Form.Item>
+
+                      <Form.Item
+                        name="billReccuringTime"
+                        label={
+                          <label style={{ color: "white", fontSize: "25px" }}>
+                            How often is this bill charged?
+                          </label>
+                        }
+                        hasFeedback
+                        rules={[
+                          {
+                            required: true,
+                            message:
+                              "Please select how often you are charged this bill.",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Please select a time period">
+                          <Option value="weekly">Weekly</Option>
+                          <Option value="fortnightly">Fortnightly</Option>
+                          <Option value="monthly">Monthly</Option>
+                          <Option value="quarterly">Quarterly</Option>
+                          <Option value="semi-annually">Semi Annually</Option>
+                          <Option value="annually">Annually</Option>
+                        </Select>
+                      </Form.Item>
+
                       <Form.Item {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">
-                          Edit Savings Goal!
+                        <Button type="primary" htmlType="submit" size="large">
+                          Add Your Bill!
                         </Button>
                       </Form.Item>
                     </Form>

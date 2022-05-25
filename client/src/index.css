@@ -25,14 +25,15 @@ h6 {
 .icons {
   margin-top: auto;
   margin-bottom: auto;
-  font-size: 35px;
+  font-size: 50px;
   color: whitesmoke;
 }
 
 .icons2 {  
-  font-size: 35px;
+  font-size: 50px;
   color: whitesmoke;
-  margin-top: -5%;
+  
+  
 }
 
 .icons2:hover {
@@ -96,10 +97,6 @@ h6 {
 .whiteTextProg {
   color: whitesmoke;
   font-size: 20px;
-  
-  
-  
-
 }
 
 .displayProg {
@@ -212,7 +209,6 @@ h6 {
 
 .containedSign h1{
   padding-top: 2%;
- 
 }
 
 /*HEADER STUFF */
@@ -258,7 +254,9 @@ bottom: 10px;
   padding: 0%;
   width: 88.72vw;  
 }
+
 /*BILL STUFF */
+
 .containerBills {
   border: black solid 3px;
    background-color: #4B8CC1;
@@ -268,14 +266,14 @@ bottom: 10px;
   flex-direction: column;
   text-align: center;
   align-items: center;
+  overflow-y: auto;
 }
 
 .containerBills h1{
 font-size: 50px;
-  color: whitesmoke;
+  color: black;
   background-color: #9AD1FE; 
-  -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #7b7b7b ;
+ 
     width: 100%;
 }
 
@@ -293,13 +291,58 @@ font-size: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -1%;
+  margin-top: 2%;
   width: 30%;
   vertical-align: middle;
   padding-top: 1%;
   border: whitesmoke 3px solid;
   background-color: #323232;
 }
+
+.loadBills {
+  border-top: white 3px solid;
+  border-bottom: white 3px solid;
+  width: 90%;
+  margin-top: 1%;
+  display: flex;
+  height: 65%;
+}
+
+.leftBillsTable {
+  width: 25%;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.midBillsTable {
+  width: 50%;
+  border-left: white 3px solid;  
+  border-right: white 3px solid;
+  font-size: 25px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.rightBillsTable {
+  width: 25%; 
+  font-size: 25px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.borderBottomTitle {
+  border-bottom: white 2px solid;
+   margin-bottom: 20px;
+}
+
+.borderBottom {
+  border-bottom: white 2px solid;
+   
+}
+
+
 
 /*GOALS STUFF*/
 
@@ -309,8 +352,30 @@ font-size: 50px;
   width: 85%;
   height: 85%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  overflow-y: auto;
 }
+
+.containerGoals h1{
+  font-size: 50px;
+    color: black;
+    background-color: #FE9A9A; 
+   
+      width: 100%;
+      text-align: center;
+  }
+
+.containerGoalsFlex {
+  
+  background-color: #323232;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+
 
 .containerNewGoals {
   border: black solid 3px;
@@ -329,13 +394,14 @@ font-size: 50px;
   flex-direction: row;
   justify-content: center;
   vertical-align: middle;
-  margin-top: -4%;
+  margin-top: -6%;
 }
 
 .editGoal h3 {
   color:whitesmoke;
-  margin-top: -2%;
-  margin-right: 2%;
+  margin-top: 2%;
+  margin-right: 4%;
+  font-size: 35px;
 }
 
 .containerNewGoals h1{
@@ -364,7 +430,7 @@ font-size: 50px;
 }
 
 .Goals {
-  height: 30%;
+  height: 40%;
   width: 85%;
   border: solid whitesmoke 1px;
   margin: 2%;
@@ -380,7 +446,7 @@ font-size: 50px;
 .Goals h1 {
   padding-top: 1%;
   background-color: #FE9A9A;
-  color: whitesmoke;
+  color: black;
   font-size: 25px;
   margin-bottom: -0.5%;
 
@@ -402,7 +468,7 @@ font-size: 50px;
 }
 
 .addGoal {
-  height: 30%;
+  height: 40%;
   width: 85%;
   border: solid whitesmoke 1px;
   margin: 2%;
@@ -418,7 +484,7 @@ font-size: 50px;
 .addGoal h1 {
   padding-top: 1%;
   background-color: #FE9A9A;
-  color: whitesmoke;
+  color: black;
   font-size: 30px;
 }
 

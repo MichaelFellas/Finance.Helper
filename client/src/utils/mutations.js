@@ -24,7 +24,6 @@ export const ADD_USER = gql`
   }
 `;
 
-//TODO: CHECK THIS
 export const ADD_GOAL = gql`
   mutation addGoal(
     $goalName: String!
@@ -67,10 +66,21 @@ export const REMOVE_GOAL = gql`
   }
 `;
 
-//TODO: CHECK THIS
 export const ADD_BILL = gql`
-  mutation addBill($billData: BillInput!) {
-    addBill(billData: $billData) {
+  mutation addBill(
+    $name: String!
+    $amount: Float!
+    $billDate: Date!
+    $recurring: String!
+    $recurringTime: String!
+  ) {
+    addBill(
+      name: $name
+      amount: $amount
+      billDate: $billDate
+      recurring: $recurring
+      recurringTime: $recurringTime
+    ) {
       _id
       name
       email
@@ -80,20 +90,7 @@ export const ADD_BILL = gql`
         name
         recurring
         recurringTime
-        date
-      }
-    }
-  }
-`;
-
-//TODO: CHECK THIS
-export const ADD_CONTRIBUTION = gql`
-  mutation addContribution($amount: Float!, $date: Date!, $billId: billId) {
-    addContribution(amount: $amount, date: $date, billId: $billId) {
-      billId
-      Contributions {
-        amount
-        date
+        billDate
       }
     }
   }

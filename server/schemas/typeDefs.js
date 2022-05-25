@@ -24,20 +24,9 @@ const typeDefs = gql`
     _id: ID!
     amount: Float!
     name: String!
-    recurring: Boolean!
-    recurringTime: Float
-  }
-
-  input BillInput {
-    amount: Float!
-    name: String!
-    recurring: Boolean!
+    billDate: Date!
+    recurring: String!
     recurringTime: String
-  }
-
-  type Contribution {
-    amount: Float!
-    date: Date!
   }
 
   type Auth {
@@ -47,6 +36,8 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    meGoal: User
+    meBill: User
     goal(goalId: ID!): User
   }
 
@@ -60,8 +51,13 @@ const typeDefs = gql`
       dateBuy: Date!
     ): User
     removeGoal(_id: String!): User
-    addContribution(amount: Float!, date: Date!): Goal
-    addBill(billData: BillInput!): User
+    addBill(
+      name: String!
+      amount: Float!
+      billDate: Date!
+      recurring: String!
+      recurringTime: String
+    ): User
   }
 `;
 
