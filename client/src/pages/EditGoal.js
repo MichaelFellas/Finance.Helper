@@ -52,11 +52,11 @@ const EditGoal = () => {
   const [form] = Form.useForm();
   const { goalId } = useParams();
 
-  const { loading, goaldata } = useQuery(QUERY_SINGLE_GOAL, {
+  const { loading, data } = useQuery(QUERY_SINGLE_GOAL, {
     variables: { goalId: goalId },
   });
 
-  const goal = goaldata || {};
+  const goal = data?.goal;
   console.log(goal);
   if (loading) {
     return <div>Loading...</div>;

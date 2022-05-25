@@ -40,7 +40,7 @@ const resolvers = {
         const goal = await User.findOne({
           _id: context.user._id,
         }).populate("Goals", {
-          match: { _id: goalId },
+          match: { Goals: { _id: goalId } },
         });
         console.log(goal);
         return goal;

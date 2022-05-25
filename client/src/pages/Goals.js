@@ -22,7 +22,7 @@ const Goals = () => {
   }
 
   const userData = data?.me;
-
+  console.log(data);
   const goalsCol1 = [];
   const goalsCol2 = [];
 
