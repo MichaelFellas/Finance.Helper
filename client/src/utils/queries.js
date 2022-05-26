@@ -55,13 +55,24 @@ export const QUERY_ME_BILLS = gql`
 export const QUERY_SINGLE_GOAL = gql`
   query goal($goalId: ID!) {
     goal(goalId: $goalId) {
-      Goals {
-        _id
-        goalName
-        amount
-        progress
-        dateBuy
-      }
+      _id
+      goalName
+      amount
+      progress
+      dateBuy
+    }
+  }
+`;
+
+export const QUERY_SINGLE_BILL = gql`
+  query bill($_id: ID!) {
+    bill(_id: $_id) {
+      _id
+      name
+      amount
+      billDate
+      recurring
+      recurringTime
     }
   }
 `;

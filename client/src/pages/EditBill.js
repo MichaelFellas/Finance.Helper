@@ -1,7 +1,8 @@
 import React from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-
+import moment from "moment";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import {
   Form,
@@ -16,9 +17,14 @@ import {
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
-import { QUERY_SINGLE_GOAL } from "../utils/queries";
+import { QUERY_SINGLE_BILL } from "../utils/queries";
 import { useMutation } from "@apollo/client";
-// import { EDIT_GOAL } from "../utils/mutations";
+import { EDIT_BILL } from "../utils/mutations";
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return current && current < moment().endOf("day");
+};
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
@@ -55,41 +61,41 @@ const tailFormItemLayout = {
 
 const dateFormat = "DD/MM/YYYY";
 
-const EditGoal = () => {
+const EditBill = () => {
   const navigate = useNavigate();
-  //   const [editGoal, { error, data }] = useMutation(EDIT_GOAL);
+  const [editBill, { error, billData }] = useMutation(EDIT_BILL);
   const [form] = Form.useForm();
   const { billId } = useParams();
-
-  const { loading, data } = useQuery(QUERY_SINGLE_GOAL, {
-    variables: { billId: billId },
+  const [radioValue, setRadioValue] = useState("");
+  const { loading, data } = useQuery(QUERY_SINGLE_BILL, {
+    variables: { _id: billId },
   });
 
   const bill = data?.bill;
-  console.log(bill);
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   const onFinish = async (values) => {
-    console.log("DATE", values.purchaseDate);
-    // try {
-    //   const response = await editGoal({
-    //     variables: {
-    //       goalName: values.goalName,
-    //       amount: values.goalAmount,
-    //       progress: values.goalInitial,
-    //       dateBuy: values.purchaseDate.toDate(),
-    //     },
-    //   });
-    //   if (!response.data) {
-    //     throw new Error("something went wrong!");
-    //   }
-
-    //   navigate("/goals");
-    // } catch (e) {
-    //   console.error(e);
-    // }
+    try {
+      const response = await editBill({
+        variables: {
+          _id: values.billId,
+          name: values.billName,
+          amount: values.billAmount,
+          billDate: values.billDate.toDate(),
+          recurring: values.billRecurring,
+          recurringTime: values.billReccuringTime,
+        },
+      });
+      if (!response.data) {
+        throw new Error("something went wrong!");
+      }
+      navigate("/bills");
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -106,7 +112,7 @@ const EditGoal = () => {
             <div>
               <Content class="content">
                 <div className="containerNewGoals">
-                  <h1>NEW BILL</h1>
+                  <h1>UPDATE BILL</h1>
                   <div className="newGoalsForm">
                     <Form
                       size="large"
@@ -117,6 +123,25 @@ const EditGoal = () => {
                       scrollToFirstError
                     >
                       <Form.Item
+                        initialValue={bill._id}
+                        name="billId"
+                        label={
+                          <label style={{ color: "white", fontSize: "25px" }}>
+                            Bill ID
+                          </label>
+                        }
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your name!",
+                            whitespace: true,
+                          },
+                        ]}
+                      >
+                        <Input size="large" disabled={true} />
+                      </Form.Item>
+                      <Form.Item
+                        initialValue={bill.name}
                         name="billName"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
@@ -134,6 +159,7 @@ const EditGoal = () => {
                         <Input size="large" />
                       </Form.Item>
                       <Form.Item
+                        initialValue={bill.amount}
                         name="billAmount"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
@@ -154,6 +180,7 @@ const EditGoal = () => {
                       </Form.Item>
 
                       <Form.Item
+                        initialValue={moment(bill.billDate)}
                         name="billDate"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
@@ -168,10 +195,15 @@ const EditGoal = () => {
                           },
                         ]}
                       >
-                        <DatePicker format={dateFormat} size="large" />
+                        <DatePicker
+                          format={dateFormat}
+                          disabledDate={disabledDate}
+                          size="large"
+                        />
                       </Form.Item>
 
                       <Form.Item
+                        initialValue={bill.recurring}
                         name="billRecurring"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
@@ -186,7 +218,9 @@ const EditGoal = () => {
                           },
                         ]}
                       >
-                        <Radio.Group>
+                        <Radio.Group
+                          onChange={(e) => setRadioValue(e.target.value)}
+                        >
                           <Radio
                             style={{ color: "white", fontSize: "15px" }}
                             value="true"
@@ -201,36 +235,37 @@ const EditGoal = () => {
                           </Radio>
                         </Radio.Group>
                       </Form.Item>
-
-                      <Form.Item
-                        name="billReccuringTime"
-                        label={
-                          <label style={{ color: "white", fontSize: "25px" }}>
-                            How often is this bill charged?
-                          </label>
-                        }
-                        hasFeedback
-                        rules={[
-                          {
-                            required: true,
-                            message:
-                              "Please select how often you are charged this bill.",
-                          },
-                        ]}
-                      >
-                        <Select placeholder="Please select a time period">
-                          <Option value="weekly">Weekly</Option>
-                          <Option value="fortnightly">Fortnightly</Option>
-                          <Option value="monthly">Monthly</Option>
-                          <Option value="quarterly">Quarterly</Option>
-                          <Option value="semi-annually">Semi Annually</Option>
-                          <Option value="annually">Annually</Option>
-                        </Select>
-                      </Form.Item>
-
+                      {radioValue === "true" && (
+                        <Form.Item
+                          initialValue={bill.recurringTime}
+                          name="billReccuringTime"
+                          label={
+                            <label style={{ color: "white", fontSize: "25px" }}>
+                              How often is this bill charged?
+                            </label>
+                          }
+                          hasFeedback
+                          rules={[
+                            {
+                              required: true,
+                              message:
+                                "Please select how often you are charged this bill.",
+                            },
+                          ]}
+                        >
+                          <Select placeholder="Please select a time period">
+                            <Option value="weekly">Weekly</Option>
+                            <Option value="fortnightly">Fortnightly</Option>
+                            <Option value="monthly">Monthly</Option>
+                            <Option value="quarterly">Quarterly</Option>
+                            <Option value="semi-annually">Semi Annually</Option>
+                            <Option value="annually">Annually</Option>
+                          </Select>
+                        </Form.Item>
+                      )}
                       <Form.Item {...tailFormItemLayout}>
                         <Button type="primary" htmlType="submit" size="large">
-                          Add Your Bill!
+                          UPDATE BILL
                         </Button>
                       </Form.Item>
                     </Form>
@@ -268,4 +303,4 @@ const EditGoal = () => {
   );
 };
 
-export default EditGoal;
+export default EditBill;

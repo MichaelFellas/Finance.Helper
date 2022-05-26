@@ -26,10 +26,7 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate(
-          "Goals",
-          "Bills"
-        );
+        const user = await User.findOne({ _id: context.user._id });
 
         return user;
       }
@@ -60,14 +57,21 @@ const resolvers = {
 
     goal: async (parent, { goalId }, context) => {
       if (context.user) {
-        const goal = await User.findOne({
-          _id: context.user._id,
-        }).populate({
-          path: "Goals",
-          match: { goalName: "XBOX" },
-        });
+        const user = await User.findById(context.user._id);
+
+        const goal = user.Goals.find((goal) => goal._id.toString() === goalId);
         console.log(goal);
         return goal;
+      }
+    },
+
+    bill: async (parent, { _id }, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id);
+
+        const bill = user.Bills.find((bill) => bill._id.toString() === _id);
+        console.log(bill);
+        return bill;
       }
     },
   },
@@ -119,6 +123,35 @@ const resolvers = {
       }
     },
 
+    editGoal: async (parent, args, context) => {
+      try {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: { Goals: { _id: args.goalId } },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        const goal = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $push: { Goals: args },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+
+        return goal;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
     removeGoal: async (parent, args, context) => {
       try {
         const user = User.findOneAndUpdate(
@@ -140,6 +173,35 @@ const resolvers = {
           { _id: context.user._id },
           {
             $addToSet: { Bills: args },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+
+        return bill;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
+    editBill: async (parent, args, context) => {
+      try {
+        const user = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: { Bills: { _id: args._id } },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        const bill = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $push: { Bills: args },
           },
           {
             new: true,

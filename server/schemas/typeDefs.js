@@ -38,13 +38,21 @@ const typeDefs = gql`
     me: User
     meGoal: User
     meBill: User
-    goal(goalId: ID!): User
+    goal(goalId: ID!): Goal
+    bill(_id: ID!): Bill
   }
 
   type Mutation {
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addGoal(
+      goalName: String!
+      amount: Float!
+      progress: Float!
+      dateBuy: Date!
+    ): User
+    editGoal(
+      goalId: String!
       goalName: String!
       amount: Float!
       progress: Float!
@@ -58,9 +66,15 @@ const typeDefs = gql`
       recurring: String!
       recurringTime: String
     ): User
+    editBill(
+      _id: String!
+      name: String!
+      amount: Float!
+      billDate: Date!
+      recurring: String!
+      recurringTime: String
+    ): User
   }
 `;
 
 module.exports = typeDefs;
-
-//TODO: ADD QUERIES FOR BILLS AND GOALS

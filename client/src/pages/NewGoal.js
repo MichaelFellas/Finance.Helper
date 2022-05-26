@@ -3,11 +3,16 @@ import { Form, Input, InputNumber, DatePicker, Layout, Button } from "antd";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
-
+import moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_GOAL } from "../utils/mutations";
 
 const { Header, Footer, Sider, Content } = Layout;
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return current && current < moment().endOf("day");
+};
 
 const formItemLayout = {
   labelCol: {
@@ -157,7 +162,11 @@ const NewGoal = () => {
                           },
                         ]}
                       >
-                        <DatePicker format={dateFormat} size="large" />
+                        <DatePicker
+                          format={dateFormat}
+                          disabledDate={disabledDate}
+                          size="large"
+                        />
                       </Form.Item>
                       <Form.Item {...tailFormItemLayout}>
                         <Button type="primary" htmlType="submit">

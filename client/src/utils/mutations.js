@@ -50,6 +50,34 @@ export const ADD_GOAL = gql`
   }
 `;
 
+export const EDIT_GOAL = gql`
+  mutation editGoal(
+    $goalName: String!
+    $amount: Float!
+    $progress: Float!
+    $dateBuy: Date!
+    $goalId: String!
+  ) {
+    editGoal(
+      goalId: $goalId
+      goalName: $goalName
+      amount: $amount
+      progress: $progress
+      dateBuy: $dateBuy
+    ) {
+      _id
+      name
+      email
+      Goals {
+        _id
+        goalName
+        amount
+        progress
+      }
+    }
+  }
+`;
+
 export const REMOVE_GOAL = gql`
   mutation removeGoal($_id: String!) {
     removeGoal(_id: $_id) {
@@ -72,7 +100,7 @@ export const ADD_BILL = gql`
     $amount: Float!
     $billDate: Date!
     $recurring: String!
-    $recurringTime: String!
+    $recurringTime: String
   ) {
     addBill(
       name: $name
@@ -80,6 +108,38 @@ export const ADD_BILL = gql`
       billDate: $billDate
       recurring: $recurring
       recurringTime: $recurringTime
+    ) {
+      _id
+      name
+      email
+      Bills {
+        _id
+        amount
+        name
+        recurring
+        recurringTime
+        billDate
+      }
+    }
+  }
+`;
+
+export const EDIT_BILL = gql`
+  mutation editBill(
+    $name: String!
+    $amount: Float!
+    $billDate: Date!
+    $recurring: String!
+    $recurringTime: String
+    $_id: String!
+  ) {
+    editBill(
+      name: $name
+      amount: $amount
+      billDate: $billDate
+      recurring: $recurring
+      recurringTime: $recurringTime
+      _id: $_id
     ) {
       _id
       name

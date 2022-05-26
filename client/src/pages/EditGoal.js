@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-
+import moment from "moment";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { Form, Input, InputNumber, DatePicker, Layout, Button } from "antd";
 import Navbar from "../components/Navbar";
@@ -9,10 +9,15 @@ import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
 import { QUERY_SINGLE_GOAL } from "../utils/queries";
 import { useMutation } from "@apollo/client";
-// import { EDIT_GOAL } from "../utils/mutations";
+import { EDIT_GOAL } from "../utils/mutations";
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return current && current < moment().endOf("day");
+};
 
 const { Header, Footer, Sider, Content } = Layout;
-
+const radioValue = "false";
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -48,7 +53,7 @@ const dateFormat = "DD/MM/YYYY";
 
 const EditGoal = () => {
   const navigate = useNavigate();
-  //   const [editGoal, { error, data }] = useMutation(EDIT_GOAL);
+  const [editGoal, { error, editData }] = useMutation(EDIT_GOAL);
   const [form] = Form.useForm();
   const { goalId } = useParams();
 
@@ -57,30 +62,31 @@ const EditGoal = () => {
   });
 
   const goal = data?.goal;
-  console.log(goal);
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   const onFinish = async (values) => {
-    console.log("DATE", values.purchaseDate);
-    // try {
-    //   const response = await editGoal({
-    //     variables: {
-    //       goalName: values.goalName,
-    //       amount: values.goalAmount,
-    //       progress: values.goalInitial,
-    //       dateBuy: values.purchaseDate.toDate(),
-    //     },
-    //   });
-    //   if (!response.data) {
-    //     throw new Error("something went wrong!");
-    //   }
+    console.log(values);
+    try {
+      const response = await editGoal({
+        variables: {
+          goalId: values.goalId,
+          goalName: values.goalName,
+          amount: values.goalAmount,
+          progress: values.goalInitial,
+          dateBuy: values.purchaseDate.toDate(),
+        },
+      });
+      if (!response.data) {
+        throw new Error("something went wrong!");
+      }
 
-    //   navigate("/goals");
-    // } catch (e) {
-    //   console.error(e);
-    // }
+      navigate("/goals");
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -108,6 +114,25 @@ const EditGoal = () => {
                       scrollToFirstError
                     >
                       <Form.Item
+                        initialValue={goal._id}
+                        name="goalId"
+                        label={
+                          <label style={{ color: "white", fontSize: "25px" }}>
+                            Goal ID
+                          </label>
+                        }
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your name!",
+                            whitespace: true,
+                          },
+                        ]}
+                      >
+                        <Input size="large" disabled={true} />
+                      </Form.Item>
+                      <Form.Item
+                        initialValue={goal.goalName}
                         name="goalName"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
@@ -125,6 +150,7 @@ const EditGoal = () => {
                         <Input size="large" />
                       </Form.Item>
                       <Form.Item
+                        initialValue={goal.amount}
                         name="goalAmount"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
@@ -145,10 +171,11 @@ const EditGoal = () => {
                       </Form.Item>
 
                       <Form.Item
+                        initialValue={goal.progress}
                         name="goalInitial"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
-                            Initial Amount
+                            Progress
                           </label>
                         }
                         rules={[{ type: "number", min: 0, required: true }]}
@@ -157,6 +184,7 @@ const EditGoal = () => {
                       </Form.Item>
 
                       <Form.Item
+                        initialValue={moment(goal.dateBuy)}
                         name="purchaseDate"
                         label={
                           <label style={{ color: "white", fontSize: "25px" }}>
@@ -171,7 +199,11 @@ const EditGoal = () => {
                           },
                         ]}
                       >
-                        <DatePicker format={dateFormat} size="large" />
+                        <DatePicker
+                          format={dateFormat}
+                          disabledDate={disabledDate}
+                          size="large"
+                        />
                       </Form.Item>
                       <Form.Item {...tailFormItemLayout}>
                         <Button type="primary" htmlType="submit">

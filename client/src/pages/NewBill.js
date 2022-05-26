@@ -1,4 +1,5 @@
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import {
   Form,
   Input,
@@ -12,10 +13,15 @@ import {
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
-
+import moment from "moment";
 import { useMutation } from "@apollo/client";
 import { ADD_BILL } from "../utils/mutations";
-import moment from "moment";
+import React from "react";
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return current && current < moment().endOf("day");
+};
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
@@ -55,7 +61,7 @@ const dateFormat = "DD/MM/YYYY";
 const NewBill = () => {
   const navigate = useNavigate();
   const [addBill, { error, data }] = useMutation(ADD_BILL);
-
+  const [radioValue, setRadioValue] = useState("");
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
@@ -155,7 +161,11 @@ const NewBill = () => {
                           },
                         ]}
                       >
-                        <DatePicker format={dateFormat} size="large" />
+                        <DatePicker
+                          format={dateFormat}
+                          disabledDate={disabledDate}
+                          size="large"
+                        />
                       </Form.Item>
 
                       <Form.Item
@@ -173,7 +183,9 @@ const NewBill = () => {
                           },
                         ]}
                       >
-                        <Radio.Group>
+                        <Radio.Group
+                          onChange={(e) => setRadioValue(e.target.value)}
+                        >
                           <Radio
                             style={{ color: "white", fontSize: "15px" }}
                             value="true"
@@ -189,31 +201,32 @@ const NewBill = () => {
                         </Radio.Group>
                       </Form.Item>
 
-                      <Form.Item
-                        name="billReccuringTime"
-                        label={
-                          <label style={{ color: "white", fontSize: "25px" }}>
-                            How often is this bill charged?
-                          </label>
-                        }
-                        hasFeedback
-                        rules={[
-                          {
-                            required: true,
-                            message:
-                              "Please select how often you are charged this bill.",
-                          },
-                        ]}
-                      >
-                        <Select placeholder="Please select a time period">
-                          <Option value="weekly">Weekly</Option>
-                          <Option value="fortnightly">Fortnightly</Option>
-                          <Option value="monthly">Monthly</Option>
-                          <Option value="quarterly">Quarterly</Option>
-                          <Option value="semi-annually">Semi Annually</Option>
-                          <Option value="annually">Annually</Option>
-                        </Select>
-                      </Form.Item>
+                      {radioValue === "true" && (
+                        <Form.Item
+                          name="billReccuringTime"
+                          label={
+                            <label style={{ color: "white", fontSize: "25px" }}>
+                              How often is this bill charged?
+                            </label>
+                          }
+                          hasFeedback
+                          rules={[
+                            {
+                              message:
+                                "Please select how often you are charged this bill.",
+                            },
+                          ]}
+                        >
+                          <Select placeholder="Please select a time period">
+                            <Option value="weekly">Weekly</Option>
+                            <Option value="fortnightly">Fortnightly</Option>
+                            <Option value="monthly">Monthly</Option>
+                            <Option value="quarterly">Quarterly</Option>
+                            <Option value="semi-annually">Semi Annually</Option>
+                            <Option value="annually">Annually</Option>
+                          </Select>
+                        </Form.Item>
+                      )}
 
                       <Form.Item {...tailFormItemLayout}>
                         <Button type="primary" htmlType="submit" size="large">

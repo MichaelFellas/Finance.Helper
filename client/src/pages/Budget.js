@@ -4,10 +4,75 @@ import { Button } from "antd";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Auth from "../utils/auth";
+import PieChartJs from "../components/Pie-Graph";
+import React, { PureComponent } from "react";
+import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+
+import { QUERY_ME_BILLS } from "../utils/queries";
+import { useQuery } from "@apollo/client";
+
+const COLORS = [
+  "#0088FE",
+  "#00C49F",
+  "#FFBB28",
+  "#FF8042",
+  "#B8058D",
+  "#D80303",
+  "#01A09A",
+  "#9901A0",
+  "#A06F01",
+  "#000000",
+];
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index,
+  name,
+  value,
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 1.1;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const nameLabel = name;
+  const valueLabel = value;
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "start" : "end"}
+      dominantBaseline="central"
+    >
+      {nameLabel} ${valueLabel} = {`${(percent * 100).toFixed(0)}%`} Total Bills
+    </text>
+  );
+};
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const Budget = () => {
+  const { loading, data } = useQuery(QUERY_ME_BILLS);
+
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
+
+  const userData = data?.meBill;
+  const sortUser = userData.Bills;
+
+  const dataArray = [];
+  for (let i = 0; sortUser[i]; i++) {
+    const object = { name: sortUser[i].name, value: sortUser[i].amount };
+    dataArray.push(object);
+  }
+
   return (
     <>
       {Auth.loggedIn() ? (
@@ -21,7 +86,35 @@ const Budget = () => {
             </Sider>
             <div>
               <Content class="content">
-                <div className="containerGoals"></div>
+                <div className="containerBudget">
+                  <h1 className="whiteText">PIE CHART</h1>
+
+                  {
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={dataArray}
+                          cx="50%"
+                          cy="50%"
+                          labelLine={false}
+                          label={renderCustomizedLabel}
+                          outerRadius={300}
+                          fill="#8884d8"
+                          dataKey="value"
+                        >
+                          {dataArray.map((entry, index) => {
+                            return (
+                              <Cell
+                                key={`cell-${index}`}
+                                fill={COLORS[index % COLORS.length]}
+                              />
+                            );
+                          })}
+                        </Pie>
+                      </PieChart>
+                    </ResponsiveContainer>
+                  }
+                </div>
               </Content>
             </div>
           </Layout>

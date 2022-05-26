@@ -45,15 +45,14 @@ const ProgressBar = (props) => {
     width: `${value}%`,
     backgroundColor: bgcolor,
     borderRadius: "inherit",
-    textAlign: "center",
+    textAlign: "right",
   };
 
   const labelStyles = {
     padding: 5,
     color: "white",
     fontWeight: "bold",
-    marginTop: "auto",
-    marginBottom: "auto",
+    marginTop: 5,
   };
 
   return (

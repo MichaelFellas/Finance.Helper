@@ -20,7 +20,18 @@ const Bills = () => {
   }
 
   const userData = data?.meBill;
-  console.log(userData);
+
+  const sortUser = userData.Bills;
+
+  const sortArray = [];
+
+  for (let i = 0; sortUser[i]; i++) {
+    sortArray.push(sortUser[i]);
+  }
+
+  const sortedAsc = sortArray.sort(
+    (objA, objB) => Number(objA.billDate) - Number(objB.billDate)
+  );
 
   return (
     <>
@@ -39,35 +50,37 @@ const Bills = () => {
                   <h1>BILL TRACKER</h1>
 
                   <div className="loadBills">
-                    <div className="leftBillsTable whiteText">
-                      <div className="borderBottomTitle">BILL DATE</div>
-                      {userData.Bills.map((bill) => {
-                        return (
-                          <p className="borderBottom">
-                            {moment(bill.billDate).format("DD/MM/YYYY")}
-                          </p>
-                        );
-                      })}
-                    </div>
-                    <div className="midBillsTable whiteText">
-                      <div className="borderBottomTitle">BILL NAME</div>
-                      <div>
-                        {userData.Bills.map((bill) => {
+                    <div className="billsTable">
+                      <div className="leftBillsTable whiteText">
+                        <div className="borderBottomTitle">BILL DATE</div>
+                        {sortedAsc.map((bill) => {
                           return (
-                            <NavLink to={`/editBill/${bill._id}`}>
-                              <p className="borderBottom whiteText">
-                                {bill.name}
-                              </p>
-                            </NavLink>
+                            <p className="borderBottom">
+                              {moment(bill.billDate).format("DD/MM/YYYY")}
+                            </p>
                           );
                         })}
                       </div>
-                    </div>
-                    <div className="rightBillsTable whiteText">
-                      <div className="borderBottomTitle">BILL AMOUNT</div>
-                      {userData.Bills.map((bill) => {
-                        return <p className="borderBottom">${bill.amount}</p>;
-                      })}
+                      <div className="midBillsTable borderRL whiteText">
+                        <div className="borderBottomTitle">BILL NAME</div>
+                        <div>
+                          {sortedAsc.map((bill) => {
+                            return (
+                              <NavLink to={`/editBill/${bill._id}`}>
+                                <p className="borderBottom whiteText ">
+                                  {bill.name}
+                                </p>
+                              </NavLink>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div className="rightBillsTable whiteText">
+                        <div className="borderBottomTitle">BILL AMOUNT</div>
+                        {sortedAsc.map((bill) => {
+                          return <p className="borderBottom">${bill.amount}</p>;
+                        })}
+                      </div>
                     </div>
                   </div>
                   <div className="addBill">

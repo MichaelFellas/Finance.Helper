@@ -22,18 +22,26 @@ const Goals = () => {
   }
 
   const userData = data?.meGoal;
+  const sortUser = userData.Goals;
+
+  const sortArray = [];
+
+  for (let i = 0; sortUser[i]; i++) {
+    sortArray.push(sortUser[i]);
+  }
+
+  const sortedAsc = sortArray.sort(
+    (objA, objB) => Number(objA.dateBuy) - Number(objB.dateBuy)
+  );
 
   const goalsCol1 = [];
   const goalsCol2 = [];
 
-  for (let i = 0; userData.Goals[i]; i++) {
-    if (i === 0) {
-      goalsCol2.push(userData.Goals[i]);
-    }
+  for (let i = 0; sortedAsc[i]; i++) {
     if (i % 2 === 0) {
-      goalsCol2.push(userData.Goals[i]);
+      goalsCol2.push(sortedAsc[i]);
     } else {
-      goalsCol1.push(userData.Goals[i]);
+      goalsCol1.push(sortedAsc[i]);
     }
   }
 
@@ -97,38 +105,40 @@ const Goals = () => {
                         );
                       })}
                     </div>
-                    {userData.Goals.length > 2 && (
-                      <div className="innerGoals">
-                        {goalsCol2.map((goal) => {
-                          return (
-                            <div className="Goals">
-                              <h1>{goal.goalName}</h1>
-                              <p className="whiteText">
-                                Purchase Date:{" "}
-                                {moment(goal.dateBuy).format("DD/MM/YYYY")}
-                              </p>
-                              <p className="whiteText">
-                                Progress: ${goal.progress}/ ${goal.amount}
-                              </p>
-                              <div className="progBar">
-                                <ProgressBar
-                                  progress={goal.progress}
-                                  amount={goal.amount}
-                                />
-                              </div>
-                              <div className="editGoal">
-                                <h3>Edit Goal</h3>
-                                <NavLink className="icons2" to="/newGoal">
-                                  <FontAwesomeIcon
-                                    icon={faCirclePlus}
-                                  ></FontAwesomeIcon>
-                                </NavLink>
-                              </div>
+
+                    <div className="innerGoals">
+                      {goalsCol2.map((goal) => {
+                        return (
+                          <div className="Goals">
+                            <h1>{goal.goalName}</h1>
+                            <p className="whiteText">
+                              Purchase Date:{" "}
+                              {moment(goal.dateBuy).format("DD/MM/YYYY")}
+                            </p>
+                            <p className="whiteText">
+                              Progress: ${goal.progress}/ ${goal.amount}
+                            </p>
+                            <div className="progBar">
+                              <ProgressBar
+                                progress={goal.progress}
+                                amount={goal.amount}
+                              />
                             </div>
-                          );
-                        })}
-                      </div>
-                    )}
+                            <div className="editGoal">
+                              <h3>Edit Goal</h3>
+                              <NavLink
+                                className="icons2"
+                                to={`/editGoal/${goal._id}`}
+                              >
+                                <FontAwesomeIcon
+                                  icon={faCirclePlus}
+                                ></FontAwesomeIcon>
+                              </NavLink>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </Content>
