@@ -56,7 +56,15 @@ const HomePage = () => {
           </div>
         </div>
       </Content>
-      <Footer class="footer">Footer</Footer>
+      <Footer class="footer">
+        {Auth.loggedIn() ? (
+          <Button className="logOut" onClick={Auth.logout}>
+            Logout
+          </Button>
+        ) : (
+          <> </>
+        )}
+      </Footer>
     </>
   );
 };

@@ -1,11 +1,11 @@
 import { Layout } from "antd";
-import { Navigate, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink } from "react-router-dom";
 import { Button } from "antd";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Auth from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlus, faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import { QUERY_ME_BILLS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import moment from "moment";
@@ -14,6 +14,10 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const Bills = () => {
   const { loading, data } = useQuery(QUERY_ME_BILLS);
+
+  const handleDeleteBill = async (_id) => {
+    console.log(_id);
+  };
 
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -78,15 +82,33 @@ const Bills = () => {
                       <div className="rightBillsTable whiteText">
                         <div className="borderBottomTitle">BILL AMOUNT</div>
                         {sortedAsc.map((bill) => {
-                          return <p className="borderBottom">${bill.amount}</p>;
+                          return (
+                            <p className="borderBottom">
+                              ${bill.amount}
+                              <FontAwesomeIcon
+                                onClick={() => {
+                                  handleDeleteBill(bill._id);
+                                }}
+                                className="whiteText billDeleteButton"
+                                icon={faDeleteLeft}
+                              ></FontAwesomeIcon>
+                            </p>
+                          );
                         })}
                       </div>
                     </div>
                   </div>
-                  <div className="addBill">
-                    <NavLink className="addBillButton" to="/newBill">
-                      <h2>ADD A BILL</h2>
-                    </NavLink>
+                  <div className="billButtons">
+                    <div className="addBill">
+                      <NavLink className="addBillButton" to="/newBill">
+                        <h2>ADD A BILL</h2>
+                      </NavLink>
+                    </div>
+                    <div className="addBill">
+                      <NavLink className="addBillButton" to="/billsBreakdown">
+                        <h2>DETAILED BREAKDOWN</h2>
+                      </NavLink>
+                    </div>
                   </div>
                 </div>
               </Content>

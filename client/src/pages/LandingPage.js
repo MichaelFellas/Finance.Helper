@@ -13,7 +13,7 @@ const contentStyle = {
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
-  background: "#364d79",
+  background: "#4B8CC1",
 };
 
 const contentStyle2 = {
@@ -65,7 +65,7 @@ const LandingPage = () => {
             </div>
           </div>
           <Layout>
-            <Footer class="footer">Footer</Footer>
+            <Footer class="footer"></Footer>
           </Layout>
         </>
       )}

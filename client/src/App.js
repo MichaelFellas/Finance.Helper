@@ -23,6 +23,7 @@ import HomePage from "./pages/HomePage";
 import Budget from "./pages/Budget";
 import Profile from "./pages/Profile";
 import Savings from "./pages/Savings";
+import BillsBreakdown from "./pages/BillsBreakdown";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -50,7 +51,7 @@ console.log(client);
 console.log(httpLink);
 
 const Background = styled.body`
-  background-color: #ba3c3c;
+  background-color: #364d79;
   height: 100vh;
 `;
 
@@ -65,6 +66,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
               <Route path="/bills" element={<Bills />} />
+              <Route path="/billsBreakdown" element={<BillsBreakdown />} />
               <Route path="/newBill" element={<NewBill />} />
               <Route path="/editBill/:billId" element={<EditBill />} />
               <Route path="/goals" element={<Goals />} />

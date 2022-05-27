@@ -6,7 +6,11 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Auth from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCirclePlus,
+  faFilePen,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import { QUERY_ME_GOALS } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 import moment from "moment";
@@ -16,6 +20,10 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const Goals = () => {
   const { loading, data } = useQuery(QUERY_ME_GOALS);
+
+  const handleDeleteGoal = async (_id) => {
+    console.log(_id);
+  };
 
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -97,9 +105,17 @@ const Goals = () => {
                                 to={`/editGoal/${goal._id}`}
                               >
                                 <FontAwesomeIcon
-                                  icon={faCirclePlus}
+                                  icon={faFilePen}
                                 ></FontAwesomeIcon>
                               </NavLink>
+
+                              <FontAwesomeIcon
+                                onClick={() => {
+                                  handleDeleteGoal(goal._id);
+                                }}
+                                className="icons2 trashCan"
+                                icon={faTrashCan}
+                              ></FontAwesomeIcon>
                             </div>
                           </div>
                         );
@@ -125,15 +141,22 @@ const Goals = () => {
                               />
                             </div>
                             <div className="editGoal">
-                              <h3>Edit Goal</h3>
                               <NavLink
                                 className="icons2"
                                 to={`/editGoal/${goal._id}`}
                               >
                                 <FontAwesomeIcon
-                                  icon={faCirclePlus}
+                                  icon={faFilePen}
                                 ></FontAwesomeIcon>
                               </NavLink>
+
+                              <FontAwesomeIcon
+                                onClick={() => {
+                                  handleDeleteGoal(goal._id);
+                                }}
+                                className="icons2 trashCan"
+                                icon={faTrashCan}
+                              ></FontAwesomeIcon>
                             </div>
                           </div>
                         );

@@ -32,11 +32,12 @@ h6 {
 .icons2 {  
   font-size: 50px;
   color: whitesmoke;  
+ 
 }
 
 .icons2:hover {
   cursor: pointer;
-  color:#4B8CC1;
+  color:00B6FF;
 }
 
 /*SIDEBAR STUFF*/
@@ -132,7 +133,7 @@ h6 {
   align-items: center;
   justify-content: center;
   height: 100vh ;
-  background-color: #ba3c3c;
+  background-color: #364d79;
   padding: 0%;  
 }
 
@@ -248,7 +249,7 @@ bottom: 10px;
   align-items: center;
   justify-content: center;
   height: 84.5vh ;
-  background-color: #ba3c3c;
+  background-color: #364d79;
   padding: 0%;
   width: 88.72vw;  
 }
@@ -258,8 +259,8 @@ bottom: 10px;
 .containerBills {
   border: black solid 3px;
    background-color: #4B8CC1;
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -343,6 +344,55 @@ font-size: 50px;
    
 }
 
+.billDeleteButton {
+  margin-left: 20px;
+  text-align: right;
+  background-color: inherit;
+ 
+}
+
+.billDeleteButton:hover {
+  cursor: pointer;
+  color: #00B6FF;
+}
+
+.billButtons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto; 
+ justify-content: space-evenly;
+ vertical-align: middle;
+}
+
+
+
+.containerBillsBreakdown {
+  border: black solid 3px;
+  background-color: #4B8CC1;
+  width: 85%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  
+}
+
+.containerBillsBreakdown h1{
+font-size: 50px;
+  color: black;
+  background-color: #9AD1FE; 
+ 
+    width: 100%;
+}
+
+.pieText {
+  font-size: 15px;
+  border: 1px solid white;
+}
+
 /*BUDGET STUFF */
 
 .containerBudget {
@@ -360,18 +410,19 @@ font-size: 50px;
 
 .containerGoals {
   border: black solid 3px;
-  background-color: #323232;
-  width: 85%;
-  height: 85%;
+  background-color: #4B8CC1;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  
 }
 
 .containerGoals h1{
   font-size: 50px;
     color: black;
-    background-color: #FE9A9A; 
+    background-color: #9AD1FE; 
    
       width: 100%;
       text-align: center;
@@ -379,11 +430,12 @@ font-size: 50px;
 
 .containerGoalsFlex {
   
-  background-color: #323232;
+  background-color: #4B8CC1;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
+  
   
 }
 
@@ -391,7 +443,7 @@ font-size: 50px;
 
 .containerNewGoals {
   border: black solid 3px;
-  background-color:#7b7b7b;
+  background-color:#4B8CC1;
   width: 85%;
   height: 85%;
   display: flex;
@@ -406,7 +458,7 @@ font-size: 50px;
   flex-direction: row;
   justify-content: center;
   vertical-align: middle;
-  margin-top: -6%;
+  
 }
 
 .editGoal h3 {
@@ -419,10 +471,9 @@ font-size: 50px;
 .containerNewGoals h1{
   text-align: center;
   font-size: 50px;
-  color: rgb(0, 0, 255);
+  color: black;
   background-color: #9AD1FE; 
-  -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #000000 ;
+ 
 }
 
 .newGoalsForm {
@@ -439,7 +490,10 @@ font-size: 50px;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  
 }
+
+
 
 .Goals {
   height: 40%;
@@ -451,13 +505,15 @@ font-size: 50px;
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #7b7b7b;
+  background-color: #4B8CC1;
   flex-basis: 47%; 
+  margin-bottom: 5%;
+
 }
 
 .Goals h1 {
   padding-top: 1%;
-  background-color: #FE9A9A;
+  background-color: #9AD1FE; 
   color: black;
   font-size: 25px;
   margin-bottom: -0.5%;
@@ -489,13 +545,14 @@ font-size: 50px;
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #7b7b7b;
+  background-color: #4B8CC1;
   flex-basis: 47%; 
+  margin-bottom: 5%;
 }
 
 .addGoal h1 {
   padding-top: 1%;
-  background-color: #FE9A9A;
+  background-color: #9AD1FE; 
   color: black;
   font-size: 30px;
 }
@@ -504,6 +561,16 @@ font-size: 50px;
   padding-top: 1%;
   
   color: whitesmoke;
+}
+
+.trashCan {
+  margin-top: 2.5%;
+  margin-left: 3%;
+}
+
+.trashCan:hover {
+  cursor: pointer;
+  color: #00B6FF;
 }
 
 .none {
