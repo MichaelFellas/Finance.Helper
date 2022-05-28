@@ -7,16 +7,24 @@ import Auth from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus, faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import { QUERY_ME_BILLS } from "../utils/queries";
-import { useQuery } from "@apollo/client";
+import { REMOVE_BILL } from "../utils/mutations";
+import { useQuery, useMutation } from "@apollo/client";
 import moment from "moment";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const Bills = () => {
   const { loading, data } = useQuery(QUERY_ME_BILLS);
+  const [removeBill, { error }] = useMutation(REMOVE_BILL);
 
   const handleDeleteBill = async (_id) => {
-    console.log(_id);
+    try {
+      const response = await removeBill({
+        variables: { _id },
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   if (loading) {

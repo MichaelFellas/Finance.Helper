@@ -155,3 +155,20 @@ export const EDIT_BILL = gql`
     }
   }
 `;
+
+export const REMOVE_BILL = gql`
+  mutation removeBill($_id: String!) {
+    removeBill(_id: $_id) {
+      _id
+      name
+      email
+      Bills {
+        _id
+        name
+        amount
+        billDate
+        recurring
+      }
+    }
+  }
+`;

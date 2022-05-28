@@ -214,6 +214,24 @@ const resolvers = {
         console.log(err);
       }
     },
+
+    removeBill: async (parent, args, context) => {
+      try {
+        const bill = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: { Bills: { _id: args._id } },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+        return bill;
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
 };
 

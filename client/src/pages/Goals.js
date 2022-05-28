@@ -12,7 +12,8 @@ import {
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
 import { QUERY_ME_GOALS } from "../utils/queries";
-import { useQuery } from "@apollo/client";
+import { REMOVE_GOAL } from "../utils/mutations";
+import { useQuery, useMutation } from "@apollo/client";
 import moment from "moment";
 import ProgressBar from "../components/Progress-Bar";
 
@@ -20,9 +21,16 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const Goals = () => {
   const { loading, data } = useQuery(QUERY_ME_GOALS);
+  const [removeGoal, { error }] = useMutation(REMOVE_GOAL);
 
   const handleDeleteGoal = async (_id) => {
-    console.log(_id);
+    try {
+      const response = await removeGoal({
+        variables: { _id },
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   if (loading) {

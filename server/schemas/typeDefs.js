@@ -74,6 +74,7 @@ const typeDefs = gql`
       recurring: String!
       recurringTime: String
     ): User
+    removeBill(_id: String!): User
   }
 `;
 
