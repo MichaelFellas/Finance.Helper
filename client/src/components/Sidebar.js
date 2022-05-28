@@ -7,37 +7,38 @@ const Sidebar = () => {
       <div className="containerSide">
         <NavLink className="sideBarBtn bgEven" to="/bills">
           <div className="sidebarLink">
-            <div className="whiteText">Bill Planner</div>
+            <div className="blackText">Bill Tracker</div>
           </div>
         </NavLink>
-        <NavLink className="sideBarBtn  bgOdd" to="/goals">
+        <NavLink className="sideBarBtn bgOdd" to="/billsBreakdown">
           <div className="sidebarLink">
-            <div className="whiteText">Goal Tracker</div>
+            <div className="blackText">Bill Breakdown</div>
           </div>
         </NavLink>
-        <NavLink className="sideBarBtn bgEven" to="/budget">
+        <NavLink className="sideBarBtn  bgEven" to="/goals">
           <div className="sidebarLink">
-            <div className="whiteText">Budget Helper</div>
+            <div className="blackText">Goal Visualizer</div>
           </div>
         </NavLink>
-        <NavLink className="sideBarBtn  bgOdd" to="/expense">
+        <NavLink className="sideBarBtn bgOdd" to="/budget">
           <div className="sidebarLink">
-            <div className="whiteText">Expenses Tracking</div>
+            <div className="blackText">Budget Helper</div>
           </div>
         </NavLink>
-        <NavLink className="sideBarBtn bgEven" to="/savings">
+        <NavLink className="sideBarBtn  bgEven" to="/expense">
           <div className="sidebarLink">
-            <div className="whiteText">Savings Visualizer</div>
+            <div className="blackText">Expenses Tracking</div>
           </div>
         </NavLink>
-        <NavLink className="sideBarBtn  bgOdd" to="/profile">
+        <NavLink className="sideBarBtn bgOdd" to="/savings">
           <div className="sidebarLink">
-            <div className="whiteText">Update Profile</div>
+            <div className="blackText">Savings Visualizer</div>
           </div>
         </NavLink>
+
         <NavLink className="sideBarBtn bgEven" to="/home">
           <div className="sidebarLink">
-            <div className="whiteText">Home</div>
+            <div className="blackText">Home</div>
           </div>
         </NavLink>
       </div>

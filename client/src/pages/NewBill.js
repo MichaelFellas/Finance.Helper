@@ -229,7 +229,22 @@ const NewBill = () => {
                       )}
 
                       <Form.Item {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit" size="large">
+                        <Button
+                          type="default"
+                          htmlType="submit"
+                          style={{
+                            color: "white",
+                            background: "#323232",
+                            borderColor: "white",
+                            borderWidth: "3px",
+                            fontSize: "15px",
+                            height: "50px",
+                            width: "200px",
+                            textAlign: "center",
+                            marginLeft: "-50px",
+                          }}
+                          block
+                        >
                           Add Your Bill!
                         </Button>
                       </Form.Item>
@@ -253,8 +268,21 @@ const NewBill = () => {
           </Layout>
           <Footer class="footer">
             {Auth.loggedIn() ? (
-              <Button className="logOut" onClick={Auth.logout}>
-                Logout
+              <Button
+                className="logOut"
+                onClick={Auth.logout}
+                style={{
+                  color: "white",
+                  background: "#323232",
+                  borderColor: "white",
+                  borderWidth: "3px",
+                  fontSize: "20px",
+                  height: "50px",
+                  width: "230px",
+                  textAlign: "center",
+                }}
+              >
+                LOGOUT
               </Button>
             ) : (
               <> </>

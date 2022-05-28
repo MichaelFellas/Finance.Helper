@@ -21,7 +21,7 @@ import NewGoal from "./pages/NewGoal";
 import EditGoal from "./pages/EditGoal";
 import HomePage from "./pages/HomePage";
 import Budget from "./pages/Budget";
-import Profile from "./pages/Profile";
+
 import Savings from "./pages/Savings";
 import BillsBreakdown from "./pages/BillsBreakdown";
 
@@ -52,7 +52,7 @@ console.log(httpLink);
 
 const Background = styled.body`
   background-color: #364d79;
-  height: 100vh;
+  height: 100%;
 `;
 
 function App() {
@@ -73,7 +73,6 @@ function App() {
               <Route path="/newGoal" element={<NewGoal />} />
               <Route path="/editGoal/:goalId" element={<EditGoal />} />
               <Route path="/budget" element={<Budget />} />
-              <Route path="/profile" element={<Profile />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/savings" element={<Savings />} />
               <Route path="*" element={<WrongPage />} />

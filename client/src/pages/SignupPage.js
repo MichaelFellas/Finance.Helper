@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Form, Input, Button } from "antd";
-
+import { NavLink, Navigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Navbar from "../components/Navbar";
@@ -65,7 +65,6 @@ const SignupPage = () => {
           <h1 class="whiteText">Please Sign Up!</h1>
           <Form
             size="large"
-            className="widening"
             {...formItemLayout}
             form={form}
             name="register"
@@ -127,12 +126,33 @@ const SignupPage = () => {
               <Input size="large" />
             </Form.Item>
             <Form.Item {...tailFormItemLayout}>
-              <Button type="primary" htmlType="submit">
-                Sign Up!
+              <Button
+                type="default"
+                htmlType="submit"
+                style={{
+                  color: "white",
+                  background: "#323232",
+                  borderColor: "white",
+                  borderWidth: "3px",
+                  fontSize: "20px",
+                  height: "50px",
+                  width: "230px",
+                  textAlign: "center",
+                  marginLeft: "-70px",
+                }}
+                block
+              >
+                SIGN UP!
               </Button>
             </Form.Item>
           </Form>
-          <br></br>
+          <div className="billButtons">
+            <div className="signUpButton">
+              <NavLink to="/">
+                <h2 className="whiteText">GO BACK</h2>
+              </NavLink>
+            </div>
+          </div>
           <br></br>
           <br></br>
           <br></br>

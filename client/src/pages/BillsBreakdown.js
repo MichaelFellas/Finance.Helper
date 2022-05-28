@@ -86,8 +86,12 @@ const BillsBreakdown = () => {
             <div>
               <Content class="content">
                 <div className="containerBillsBreakdown">
-                  <h1 className="whiteText">DETAILED BREAKDOWN</h1>
-
+                  <h1 className="whiteText">BILL BREAKDOWN</h1>
+                  {dataArray.length === 0 && (
+                    <h2 className="whiteText bigFont">
+                      You have no bills added!
+                    </h2>
+                  )}
                   {
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
@@ -119,8 +123,21 @@ const BillsBreakdown = () => {
           </Layout>
           <Footer class="footer">
             {Auth.loggedIn() ? (
-              <Button className="logOut" onClick={Auth.logout}>
-                Logout
+              <Button
+                className="logOut"
+                onClick={Auth.logout}
+                style={{
+                  color: "white",
+                  background: "#323232",
+                  borderColor: "white",
+                  borderWidth: "3px",
+                  fontSize: "20px",
+                  height: "50px",
+                  width: "230px",
+                  textAlign: "center",
+                }}
+              >
+                LOGOUT
               </Button>
             ) : (
               <> </>

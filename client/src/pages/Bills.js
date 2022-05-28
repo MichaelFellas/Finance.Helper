@@ -124,8 +124,21 @@ const Bills = () => {
           </Layout>
           <Footer class="footer">
             {Auth.loggedIn() ? (
-              <Button className="logOut" onClick={Auth.logout}>
-                Logout
+              <Button
+                className="logOut"
+                onClick={Auth.logout}
+                style={{
+                  color: "white",
+                  background: "#323232",
+                  borderColor: "white",
+                  borderWidth: "3px",
+                  fontSize: "20px",
+                  height: "50px",
+                  width: "230px",
+                  textAlign: "center",
+                }}
+              >
+                LOGOUT
               </Button>
             ) : (
               <> </>

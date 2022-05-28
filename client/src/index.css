@@ -32,6 +32,7 @@ h6 {
 .icons2 {  
   font-size: 50px;
   color: whitesmoke;  
+  margin-top: -5%;
  
 }
 
@@ -80,17 +81,21 @@ h6 {
 }
 
 .bgEven {
-  background-color: #7b7b7b;
-  border-right: 5px black solid;
+  background-color: #9AD1FE;
+  
 }
 
 .bgOdd {
-  background-color: #323232;
-  border-right: 5px black solid;
+  background-color: #4B8CC1;
+ 
 }
 
 .whiteText {
   color: whitesmoke;  
+}
+
+.blackText {
+  color: black;  
 }
 
 .whiteTextProg {
@@ -114,25 +119,27 @@ h6 {
   width: stretch;  
   display: flex;
   align-items: center;  
-  flex-direction: column;  
-  min-height: 810px;
-  padding: 3%;  
+  flex-direction: column; 
+  padding: 3%; 
+  justify-content: center; 
 }
-
+.bigFont {
+  font-size: 50px;
+}
 .containedHome {
-  border: 1px black solid;
+  border: 1px white solid;
   max-width: 80%;
   width: 80%;
-  margin-top: -7.2%; 
-  background-color: #323232;
-  height: 75vh;
+  margin-top: 40px;
+  background-color: #4B8CC1;
+  height: 70%;
 }
 
 .contentHome {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh ;
+  height: 100% ;
   background-color: #364d79;
   padding: 0%;  
 }
@@ -140,6 +147,51 @@ h6 {
 .loginBtn {
   margin: 0.8%;
 }
+
+.homeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  width: 100%;
+  vertical-align: middle;
+  padding-top: 1%;
+  border: whitesmoke 3px solid;
+  background-color: #323232;
+}
+
+.landerButton {
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+    width: 70%;
+    vertical-align: middle;
+    padding-top: 1%;
+    border: whitesmoke 3px solid;
+    background-color: #323232;
+ 
+}
+
+.signUpButton {
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2%;
+  height: 50px;
+  width: 230px;
+  vertical-align: middle;
+  padding-top: 1%;
+  border: whitesmoke 3px solid;
+  background-color: #323232;
+  margin-top: -10px;
+
+}
+
+
+
 
 
 /*LANDING PAGE STUFF*/
@@ -154,13 +206,24 @@ h6 {
 }
 
 .containedLand {
-  border: 1px black solid;
+  border: 3px white solid;
   max-width: 80%;
   width: 80%;   
-  background-color: #323232;
+  background-color:  #4B8CC1;
   height: 70vh;
   
 }
+
+.borderRight {
+  width: 66%;
+  border-right: solid white 3px;
+}
+
+.borderRight h1{
+  font-size: 50px;
+}
+
+
 
 .loginAlign {
   height: 22vh;
@@ -191,13 +254,14 @@ h6 {
   flex-direction: column;  
   height: 88vh;
   
+  
 }
 
 .containedSign {
-  border: 1px black solid;
+  border: 1px white solid;
   max-width: 80%;
   width: 80%;   
-  background-color: #323232;
+  background-color: #4B8CC1;
   height: 70vh;  
   display: flex;
   align-items: center;
@@ -217,9 +281,7 @@ h6 {
   height: 80px;
 }
 
-.navbar {
-  margin: 0%;
-}
+
 
 
 
@@ -232,15 +294,16 @@ h6 {
   align-items: center;
   color: white;
   font-size: 50px;
-  position:relative;
+  position:absolute;
   bottom:0px;
-  border-top: 1px black solid;
+  border-top: 1px white solid;
   width:100%;
 }
 
 .logOut{
 bottom: 10px;
 }
+
 
 /*CONTENT STUFF */
 
@@ -257,7 +320,7 @@ bottom: 10px;
 /*BILL STUFF */
 
 .containerBills {
-  border: black solid 3px;
+  border: white solid 3px;
    background-color: #4B8CC1;
   width: 100%;
   height: 100%;
@@ -364,15 +427,16 @@ font-size: 50px;
   margin-right: auto; 
  justify-content: space-evenly;
  vertical-align: middle;
+ 
 }
 
 
 
 .containerBillsBreakdown {
-  border: black solid 3px;
+  border: white solid 3px;
   background-color: #4B8CC1;
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -408,8 +472,32 @@ font-size: 50px;
 
 /*GOALS STUFF*/
 
+.underCon {
+  width:600px; 
+}
+
+.containerCon {
+  border: white solid 3px;
+  background-color: #4B8CC1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  align-items: center;
+}
+
+.containerCon h1{
+  font-size: 50px;
+    color: black;
+    background-color: #9AD1FE; 
+   
+      width: 100%;
+      text-align: center;
+  }
+
 .containerGoals {
-  border: black solid 3px;
+  border: white solid 3px;
   background-color: #4B8CC1;
   width: 100%;
   height: 100%;
@@ -442,10 +530,10 @@ font-size: 50px;
 
 
 .containerNewGoals {
-  border: black solid 3px;
+  border: white solid 3px;
   background-color:#4B8CC1;
-  width: 85%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding-top: 3%;
@@ -564,7 +652,7 @@ font-size: 50px;
 }
 
 .trashCan {
-  margin-top: 2.5%;
+  margin-top: -2.8%;
   margin-left: 3%;
 }
 

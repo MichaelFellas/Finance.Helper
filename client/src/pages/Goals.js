@@ -75,7 +75,7 @@ const Goals = () => {
             <div>
               <Content class="content">
                 <div className="containerGoals">
-                  <h1>GOAL TRACKER</h1>
+                  <h1>GOAL VISUALIZER</h1>
                   <div className="containerGoalsFlex">
                     <div className="innerGoals">
                       <div className="addGoal">
@@ -106,8 +106,6 @@ const Goals = () => {
                               />
                             </div>
                             <div className="editGoal">
-                              <h3>Edit Goal</h3>
-
                               <NavLink
                                 className="icons2"
                                 to={`/editGoal/${goal._id}`}
@@ -177,8 +175,21 @@ const Goals = () => {
           </Layout>
           <Footer class="footer">
             {Auth.loggedIn() ? (
-              <Button className="logOut" onClick={Auth.logout}>
-                Logout
+              <Button
+                className="logOut"
+                onClick={Auth.logout}
+                style={{
+                  color: "white",
+                  background: "#323232",
+                  borderColor: "white",
+                  borderWidth: "3px",
+                  fontSize: "20px",
+                  height: "50px",
+                  width: "230px",
+                  textAlign: "center",
+                }}
+              >
+                LOGOUT
               </Button>
             ) : (
               <> </>

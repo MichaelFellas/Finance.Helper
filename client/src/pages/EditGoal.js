@@ -206,7 +206,22 @@ const EditGoal = () => {
                         />
                       </Form.Item>
                       <Form.Item {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">
+                        <Button
+                          type="default"
+                          htmlType="submit"
+                          style={{
+                            color: "white",
+                            background: "#323232",
+                            borderColor: "white",
+                            borderWidth: "3px",
+                            fontSize: "15px",
+                            height: "50px",
+                            width: "200px",
+                            textAlign: "center",
+                            marginLeft: "-50px",
+                          }}
+                          block
+                        >
                           Edit Savings Goal!
                         </Button>
                       </Form.Item>
@@ -216,13 +231,13 @@ const EditGoal = () => {
                     <br></br>
                     <br></br>
                     <br></br>
-                    {/* {error ? (
+                    {error ? (
                       <p class="whiteText">
                         Failed to Add Goal! Something went Wrong!
                       </p>
                     ) : (
                       <></>
-                    )} */}
+                    )}
                   </div>
                 </div>
               </Content>
@@ -230,8 +245,21 @@ const EditGoal = () => {
           </Layout>
           <Footer class="footer">
             {Auth.loggedIn() ? (
-              <Button className="logOut" onClick={Auth.logout}>
-                Logout
+              <Button
+                className="logOut"
+                onClick={Auth.logout}
+                style={{
+                  color: "white",
+                  background: "#323232",
+                  borderColor: "white",
+                  borderWidth: "3px",
+                  fontSize: "20px",
+                  height: "50px",
+                  width: "230px",
+                  textAlign: "center",
+                }}
+              >
+                LOGOUT
               </Button>
             ) : (
               <> </>
