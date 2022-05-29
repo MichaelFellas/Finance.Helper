@@ -4,8 +4,8 @@ import { Button } from "antd";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Auth from "../utils/auth";
-import React, { PureComponent } from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import React from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
 import { QUERY_ME_BILLS } from "../utils/queries";
 import { useQuery } from "@apollo/client";

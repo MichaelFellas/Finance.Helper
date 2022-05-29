@@ -1,11 +1,11 @@
 import { Layout } from "antd";
-import { Link, Navigate, NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { Button } from "antd";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Auth from "../utils/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlus, faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
+import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import { QUERY_ME_BILLS } from "../utils/queries";
 import { REMOVE_BILL } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";

@@ -5,7 +5,7 @@ import { LOGIN_USER } from "../utils/mutations";
 import Auth from "../utils/auth";
 import Navbar from "../components/Navbar";
 import { Form, Input, Button } from "antd";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const formItemLayout = {
   labelCol: {

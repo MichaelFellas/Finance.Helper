@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import Auth from "../utils/auth";
 import { NavLink, Navigate } from "react-router-dom";
-import { Button } from "antd";
+
 import bills from "../assets/bills.png";
 import goals from "../assets/goals.png";
 import breakdown from "../assets/breakdown.png";
 
-import { Carousel, Layout } from "antd";
+import { Carousel } from "antd";
 import Navbar from "../components/Navbar";
-
-const { Footer } = Layout;
 
 const contentStyle = {
   height: "460px",

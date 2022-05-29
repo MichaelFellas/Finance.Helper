@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import moment from "moment";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Form, Input, InputNumber, DatePicker, Layout, Button } from "antd";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";

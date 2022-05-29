@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Form, Input, Button } from "antd";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../utils/mutations";
 import Navbar from "../components/Navbar";
