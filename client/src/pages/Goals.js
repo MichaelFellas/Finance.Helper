@@ -37,27 +37,27 @@ const Goals = () => {
     return <h2>LOADING...</h2>;
   }
 
-  const userData = data?.meGoal;
+  const userData = data?.meGoal || [];
   const sortUser = userData.Goals;
-
-  const sortArray = [];
-
-  for (let i = 0; sortUser[i]; i++) {
-    sortArray.push(sortUser[i]);
-  }
-
-  const sortedAsc = sortArray.sort(
-    (objA, objB) => Number(objA.dateBuy) - Number(objB.dateBuy)
-  );
-
   const goalsCol1 = [];
   const goalsCol2 = [];
 
-  for (let i = 0; sortedAsc[i]; i++) {
-    if (i % 2 === 0) {
-      goalsCol2.push(sortedAsc[i]);
-    } else {
-      goalsCol1.push(sortedAsc[i]);
+  const sortArray = [];
+  if (userData.length !== 0) {
+    for (let i = 0; sortUser[i]; i++) {
+      sortArray.push(sortUser[i]);
+    }
+
+    const sortedAsc = sortArray.sort(
+      (objA, objB) => Number(objA.dateBuy) - Number(objB.dateBuy)
+    );
+
+    for (let i = 0; sortedAsc[i]; i++) {
+      if (i % 2 === 0) {
+        goalsCol2.push(sortedAsc[i]);
+      } else {
+        goalsCol1.push(sortedAsc[i]);
+      }
     }
   }
 
@@ -81,7 +81,8 @@ const Goals = () => {
                       <div className="addGoal">
                         <h1>ADD A GOAL</h1>
                         <h2>Create a new Goal that you want to save for!</h2>
-                        <NavLink className="icons" to="/newGoal">
+                        <NavLink className="icons tooltip" to="/newGoal">
+                          <span class="tooltiptextGoals">ADD NEW GOAL</span>
                           <FontAwesomeIcon
                             icon={faCirclePlus}
                           ></FontAwesomeIcon>
@@ -107,21 +108,29 @@ const Goals = () => {
                             </div>
                             <div className="editGoal">
                               <NavLink
-                                className="icons2"
+                                className="icons2 tooltip marginLeft"
                                 to={`/editGoal/${goal._id}`}
                               >
+                                <span class="tooltiptextOtherGoals">
+                                  EDIT GOAL
+                                </span>
                                 <FontAwesomeIcon
                                   icon={faFilePen}
                                 ></FontAwesomeIcon>
                               </NavLink>
 
-                              <FontAwesomeIcon
-                                onClick={() => {
-                                  handleDeleteGoal(goal._id);
-                                }}
-                                className="icons2 trashCan"
-                                icon={faTrashCan}
-                              ></FontAwesomeIcon>
+                              <div className="icons2 tooltip marginRight">
+                                <span class="tooltiptextOtherGoals">
+                                  DELETE GOAL
+                                </span>
+                                <FontAwesomeIcon
+                                  onClick={() => {
+                                    handleDeleteGoal(goal._id);
+                                  }}
+                                  className="icons2 trashCan"
+                                  icon={faTrashCan}
+                                ></FontAwesomeIcon>
+                              </div>
                             </div>
                           </div>
                         );
@@ -148,21 +157,29 @@ const Goals = () => {
                             </div>
                             <div className="editGoal">
                               <NavLink
-                                className="icons2"
+                                className="icons2 tooltip marginLeft"
                                 to={`/editGoal/${goal._id}`}
                               >
+                                <span class="tooltiptextOtherGoals">
+                                  EDIT GOAL
+                                </span>
                                 <FontAwesomeIcon
                                   icon={faFilePen}
                                 ></FontAwesomeIcon>
                               </NavLink>
 
-                              <FontAwesomeIcon
-                                onClick={() => {
-                                  handleDeleteGoal(goal._id);
-                                }}
-                                className="icons2 trashCan"
-                                icon={faTrashCan}
-                              ></FontAwesomeIcon>
+                              <div className="icons2 tooltip marginRight">
+                                <span class="tooltiptextOtherGoals">
+                                  DELETE GOAL
+                                </span>
+                                <FontAwesomeIcon
+                                  onClick={() => {
+                                    handleDeleteGoal(goal._id);
+                                  }}
+                                  className="icons2 trashCan"
+                                  icon={faTrashCan}
+                                ></FontAwesomeIcon>
+                              </div>
                             </div>
                           </div>
                         );

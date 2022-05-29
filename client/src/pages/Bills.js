@@ -31,14 +31,15 @@ const Bills = () => {
     return <h2>LOADING...</h2>;
   }
 
-  const userData = data?.meBill;
+  const userData = data?.meBill || [];
 
   const sortUser = userData.Bills;
 
   const sortArray = [];
-
-  for (let i = 0; sortUser[i]; i++) {
-    sortArray.push(sortUser[i]);
+  if (userData.length !== 0) {
+    for (let i = 0; sortUser[i]; i++) {
+      sortArray.push(sortUser[i]);
+    }
   }
 
   const sortedAsc = sortArray.sort(
@@ -79,7 +80,12 @@ const Bills = () => {
                           {sortedAsc.map((bill) => {
                             return (
                               <NavLink to={`/editBill/${bill._id}`}>
-                                <p className="borderBottom whiteText ">
+                                <p className="borderBottom whiteText tooltip">
+                                  <div className="">
+                                    <div class="tooltiptext  moveRight">
+                                      EDIT BILL
+                                    </div>
+                                  </div>
                                   {bill.name}
                                 </p>
                               </NavLink>
@@ -91,13 +97,15 @@ const Bills = () => {
                         <div className="borderBottomTitle">BILL AMOUNT</div>
                         {sortedAsc.map((bill) => {
                           return (
-                            <p className="borderBottom">
-                              ${bill.amount}
+                            <p className="borderBottom tooltip">
+                              {" "}
+                              <span class="tooltiptext">DELETE BILL</span>$
+                              {bill.amount}
                               <FontAwesomeIcon
                                 onClick={() => {
                                   handleDeleteBill(bill._id);
                                 }}
-                                className="whiteText billDeleteButton"
+                                className="whiteText billDeleteButton "
                                 icon={faDeleteLeft}
                               ></FontAwesomeIcon>
                             </p>

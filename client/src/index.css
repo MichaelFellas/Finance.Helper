@@ -305,6 +305,95 @@ bottom: 10px;
 }
 
 
+.tooltip {
+  position: relative;
+  
+
+}
+
+.moveRight {
+  right:320px;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptextGoals {
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: #000000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  top: 75px;
+  right: 282px;
+  font-size: 10px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptextGoals {
+  visibility: visible;
+}
+
+.tooltip .tooltiptextOtherGoals {
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: #000000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  top: 75px;
+ left: -38px;
+  font-size: 10px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptextOtherGoals {
+  visibility: visible;
+}
+
+.marginRight {
+  margin-left: 50px;
+}
+
+.marginLeft {
+  margin-right: 50px;
+}
+
+
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: white;
+  color: #000000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  top: 50px;
+  font-size: 10px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+
+
 /*CONTENT STUFF */
 
 .content {
@@ -314,7 +403,7 @@ bottom: 10px;
   height: 84.5vh ;
   background-color: #364d79;
   padding: 0%;
-  width: 88.72vw;  
+  width: 89.6vw;  
 }
 
 /*BILL STUFF */

@@ -63,13 +63,16 @@ const BillsBreakdown = () => {
     return <h2>LOADING...</h2>;
   }
 
-  const userData = data?.meBill;
+  const userData = data?.meBill || [];
   const sortUser = userData.Bills;
 
   const dataArray = [];
-  for (let i = 0; sortUser[i]; i++) {
-    const object = { name: sortUser[i].name, value: sortUser[i].amount };
-    dataArray.push(object);
+
+  if (userData.length !== 0) {
+    for (let i = 0; sortUser[i]; i++) {
+      const object = { name: sortUser[i].name, value: sortUser[i].amount };
+      dataArray.push(object);
+    }
   }
 
   return (

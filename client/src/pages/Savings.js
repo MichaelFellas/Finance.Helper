@@ -29,13 +29,6 @@ const Savings = () => {
                     alt="Under Construction"
                     src={building}
                   ></img>
-                  <div className="billButtons">
-                    <div className="addBill">
-                      <NavLink className="addBillButton" to="/home">
-                        <h2 className="whiteText">HOME</h2>
-                      </NavLink>
-                    </div>
-                  </div>
                 </div>
               </Content>
             </div>
