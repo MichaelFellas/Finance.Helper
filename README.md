@@ -2,18 +2,18 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-| Table of Contents                           |
-| ------------------------------------------- |
-| [1. Description.](#description)             |
-| [2. User Story.](#user-story)               |
-| [3. Requirements.](#requirements)           |
-| [4. Usage.](#usage)                         |
-| [5. License.](#license)                     |
-| [6. Contributing.](#contributing)           |
-| [7. Technologies Used.](#technologies-used) |
-| [8. Screenshots.](#screenshots)             |
-| [9. Video Walkthrough.](#video-walkthrough) |
-| [10. Questions.](#questions)                |
+| Table of Contents                                 |
+| ------------------------------------------------- |
+| [1. Description.](#description)                   |
+| [2. User Story.](#user-story)                     |
+| [3. Requirements.](#requirements)                 |
+| [4. Usage.](#usage)                               |
+| [5. License.](#license)                           |
+| [6. Contributing.](#contributing)                 |
+| [7. Technologies Used.](#technologies-used)       |
+| [8. Screenshots.](#screenshots)                   |
+| [9. Deployed Application.](#deployed-application) |
+| [10. Questions.](#questions)                      |
 
 ## Description
 
@@ -52,6 +52,8 @@ To install clone the git repository and use the `npm run develop` command in a n
 
 ## Usage
 
+To use this application navigate to the deployed link below.
+
 ## License
 
 This project uses the MIT license.
@@ -67,7 +69,6 @@ If you would like to contribute to the project please message my github.
 1. HTML 5
 2. CSS
 3. Javascript
-4.
 
 ### Packages
 
@@ -88,11 +89,13 @@ If you would like to contribute to the project please message my github.
 
 ## Screenshots
 
-![]()
+![GOALS](./client/src/assets/goals.png)
+![GOALS](./client/src/assets/bills.png)
+![GOALS](./client/src/assets/breakdown.png)
 
-## Video Walkthrough
+## Deployed Application
 
-[URL]()
+[Finance Helper](https://project-3-finance-helper.herokuapp.com/)
 
 ## Questions
 
