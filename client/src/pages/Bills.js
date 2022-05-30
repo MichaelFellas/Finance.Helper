@@ -46,6 +46,8 @@ const Bills = () => {
     (objA, objB) => Number(objA.billDate) - Number(objB.billDate)
   );
 
+  console.log(sortedAsc);
+
   return (
     <>
       {Auth.loggedIn() ? (
@@ -70,6 +72,8 @@ const Bills = () => {
                           return (
                             <p className="borderBottom">
                               {moment(bill.billDate).format("DD/MM/YYYY")}
+                              {bill.recurring === "true" &&
+                                " " + bill.recurringTime}
                             </p>
                           );
                         })}

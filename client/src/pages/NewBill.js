@@ -218,12 +218,12 @@ const NewBill = () => {
                           ]}
                         >
                           <Select placeholder="Please select a time period">
-                            <Option value="weekly">Weekly</Option>
-                            <Option value="fortnightly">Fortnightly</Option>
-                            <Option value="monthly">Monthly</Option>
-                            <Option value="quarterly">Quarterly</Option>
-                            <Option value="semi-annually">Semi Annually</Option>
-                            <Option value="annually">Annually</Option>
+                            <Option value="Weekly">Weekly</Option>
+                            <Option value="Fortnightly">Fortnightly</Option>
+                            <Option value="Monthly">Monthly</Option>
+                            <Option value="Quarterly">Quarterly</Option>
+                            <Option value="Semi-Annually">Semi Annually</Option>
+                            <Option value="Annually">Annually</Option>
                           </Select>
                         </Form.Item>
                       )}

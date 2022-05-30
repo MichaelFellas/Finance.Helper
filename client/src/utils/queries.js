@@ -47,6 +47,8 @@ export const QUERY_ME_BILLS = gql`
         name
         amount
         billDate
+        recurring
+        recurringTime
       }
     }
   }
