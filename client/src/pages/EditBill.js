@@ -125,11 +125,6 @@ const EditBill = () => {
                       <Form.Item
                         initialValue={bill._id}
                         name="billId"
-                        label={
-                          <label style={{ color: "white", fontSize: "25px" }}>
-                            Bill ID
-                          </label>
-                        }
                         rules={[
                           {
                             required: true,
@@ -138,7 +133,7 @@ const EditBill = () => {
                           },
                         ]}
                       >
-                        <Input size="large" disabled={true} />
+                        <Input type="hidden" size="large" disabled={true} />
                       </Form.Item>
                       <Form.Item
                         initialValue={bill.name}

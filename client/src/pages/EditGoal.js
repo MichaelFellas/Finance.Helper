@@ -116,11 +116,6 @@ const EditGoal = () => {
                       <Form.Item
                         initialValue={goal._id}
                         name="goalId"
-                        label={
-                          <label style={{ color: "white", fontSize: "25px" }}>
-                            Goal ID
-                          </label>
-                        }
                         rules={[
                           {
                             required: true,
@@ -129,7 +124,7 @@ const EditGoal = () => {
                           },
                         ]}
                       >
-                        <Input size="large" disabled={true} />
+                        <Input type="hidden" size="large" disabled={true} />
                       </Form.Item>
                       <Form.Item
                         initialValue={goal.goalName}
